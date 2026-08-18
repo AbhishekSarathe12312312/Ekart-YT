@@ -1,8 +1,8 @@
-import API from "../axios";
 import { Edit, Eye, Search } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import UserLogo from "../../assets/user.jpg";
 import { useNavigate } from "react-router-dom";
+import API from "../../axios";
 
 const AdminUsers = () => {
   const [users, setUsers] = useState([]);
@@ -20,8 +20,8 @@ const AdminUsers = () => {
   const getAllUsers = async () => {
     const accessToken = localStorage.getItem("accessToken");
     try {
-      const res = await axios.get(
-        "https://ekart-yt.onrender.com/api/v1/user/all-user",
+      const res = await API.get(
+        "/api/v1/user/all-user",
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,

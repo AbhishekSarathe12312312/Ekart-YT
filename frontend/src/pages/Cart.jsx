@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import API from "../axios";
+import API from "../axios.js";
 import userLogo from "../assets/user.jpg";
 import { setCart } from "../redux/productSlice";
 import { toast } from "react-toastify";
@@ -17,7 +17,7 @@ const Cart = () => {
 
   const loadCart = async () => {
     try {
-      const res = await axios.get("https://ekart-yt.onrender.com/api/v1/cart/", {
+      const res = await API.get("/api/v1/cart/", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
@@ -32,8 +32,8 @@ const Cart = () => {
 
   const handleUpdateQuantity = async (productId, type) => {
     try {
-      const res = await axios.put(
-        `https://ekart-yt.onrender.com/api/v1/cart/update`,
+      const res = await API.put(
+        `/api/v1/cart/update`,
         { productId, type },
         {
           headers: {
@@ -50,8 +50,8 @@ const Cart = () => {
   };
   const handleRemove = async (productId) => {
     try {
-      const res = await axios.delete(
-        `https://ekart-yt.onrender.com/api/v1/cart/remove`,
+      const res = await API.delete(
+        `/api/v1/cart/remove`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("accessToken")}`,

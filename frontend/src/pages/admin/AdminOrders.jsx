@@ -1,5 +1,5 @@
-import API from "../axios";
 import React, { useEffect, useState } from "react";
+import API from "../../axios.js";
 
 // Helper: Status Styling
 const getStatusStyle = (status) => {
@@ -33,7 +33,7 @@ const AdminOrders = () => {
     const fetchOrders = async () => {
       try {
         const token = localStorage.getItem("accessToken");
-        const res = await axios.get("https://ekart-yt.onrender.com/api/v1/orders/all", {
+        const res = await API.get("/api/v1/orders/all", {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (res.data.success) {

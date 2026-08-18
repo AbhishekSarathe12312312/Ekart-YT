@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import API from "../axios";
 import {
   addAddress,
   deleteAddress,
   setSelectedAddress,
   setCart,
 } from "../redux/productSlice";
+import API from "../axios";
 
 const AddressForm = () => {
   const [formData, setFormData] = useState({

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import API from "../axios";
+import API from "../../axios.js";
+
+
 import {
   Users,
   Package,
@@ -37,8 +39,8 @@ const AdminSales = () => {
       try {
         const accessToken = localStorage.getItem("accessToken");
 
-        const response = await axios.get(
-          "https://ekart-yt.onrender.com/api/v1/orders/sales",
+        const response = await API.get(
+          "/api/v1/orders/sales",
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,

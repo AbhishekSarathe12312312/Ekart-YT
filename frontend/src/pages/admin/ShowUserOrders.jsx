@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import API from "../axios";
 import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import API from "../../axios.js";
 
 const ShowUserOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -16,9 +16,6 @@ const ShowUserOrders = () => {
   // Route URL se userId nikalna ya Redux store se prioritize karna
   const userId = params.userId || user?._id;
 
-  // Backend URL (Agar relative image path ho toh)
-  const BACKEND_URL = "https://ekart-yt.onrender.com";
-
   useEffect(() => {
     const fetchOrders = async () => {
       if (!userId) {
@@ -30,8 +27,8 @@ const ShowUserOrders = () => {
 
       try {
         setLoading(true);
-        const res = await axios.get(
-          `${BACKEND_URL}/api/v1/orders/user-order/${userId}`,
+        const res = await API.get(
+          `/api/v1/orders/user-order/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,

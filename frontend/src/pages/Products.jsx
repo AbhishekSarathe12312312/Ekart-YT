@@ -20,8 +20,8 @@ const Products = () => {
 
   const getAllProducts = async () => {
     try {
-      const res = await axios.get(
-        `https://ekart-yt.onrender.com/api/v1/product/getallproducts`,
+      const res = await API.get(
+        `/api/v1/product/getallproducts`,
       );
       if (res.data.success) {
         setAllProducts(res.data.products);

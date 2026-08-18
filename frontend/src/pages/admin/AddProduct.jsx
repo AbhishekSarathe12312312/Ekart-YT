@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import ImageUpload from "../../components/ImageUpload";
 import { toast } from "react-toastify";
-import API from "../axios";
+
+import API from "../../axios.js";
+
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../../redux/productSlice";
 
