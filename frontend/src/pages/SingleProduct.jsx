@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import API from "../axios";
 import { toast } from "react-toastify";
 import { setCart } from "../redux/productSlice";
 
@@ -27,8 +27,8 @@ const SingleProduct = () => {
 
   const addToCart = async (productId) => {
     try {
-      const res = await axios.post(
-        "https://ekart-yt.onrender.com/api/v1/cart/add",
+      const res = await API.post(
+        "/api/v1/cart/add",
         { productId, quantity },
         {
           headers: {

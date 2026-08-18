@@ -1,4 +1,4 @@
-import axios from "axios";
+import API from "../axios";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -16,8 +16,8 @@ const Navbar = () => {
 
   const logoutHandler = async () => {
     try {
-      const res = await axios.post(
-        `https://ekart-yt.onrender.com/api/v1/user/logout`,
+      const res = await API.post(
+        `/api/v1/user/logout`,
         {},
         {
           headers: {

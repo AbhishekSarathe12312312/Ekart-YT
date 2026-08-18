@@ -1,4 +1,4 @@
-import axios from "axios";
+import API from "../axios";
 import React, { useEffect, useState } from "react";
 
 // Helper: Status Styling

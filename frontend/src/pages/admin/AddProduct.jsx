@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ImageUpload from "../../components/ImageUpload";
 import { toast } from "react-toastify";
-import axios from "axios";
+import API from "../axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../../redux/productSlice";
 
@@ -45,8 +45,8 @@ const AddProduct = () => {
     });
 
     try {
-      const res = await axios.post(
-        `https://ekart-yt.onrender.com/api/v1/product/addproduct`,
+      const res = await API.post(
+        `/api/v1/product/addproduct`,
         formData,
         {
           headers: {

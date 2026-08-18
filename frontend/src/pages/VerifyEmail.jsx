@@ -1,4 +1,4 @@
-import axios from "axios";
+import API from "../axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -11,8 +11,8 @@ const VerifyEmail = () => {
 
   const verifyEmail = async () => {
     try {
-      const res = await axios.post(
-        `https://ekart-yt.onrender.com/api/v1/user/verify`,
+      const res = await API.post(
+        `/api/v1/user/verify`,
         {},
         {
           headers: {

@@ -2,7 +2,7 @@ import React from "react";
 import FilterSidebar from "../components/FilterSidebar";
 import ProductCard from "../components/ProductCard";
 import { toast } from "react-toastify";
-import axios from "axios";
+import API from "../axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";

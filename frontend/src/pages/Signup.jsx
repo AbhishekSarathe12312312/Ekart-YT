@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { EyeOff, Eye, Loader2 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import API from "../axios";
 import { toast } from "react-toastify";
 
 const Signup = () => {
@@ -27,8 +27,8 @@ const Signup = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await axios.post(
-        `https://ekart-yt.onrender.com/api/v1/user/register`,
+      const res = await API.post(
+        `/api/v1/user/register`,
         formData,
         {
           headers: {

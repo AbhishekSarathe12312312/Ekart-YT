@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import userLogo from "../assets/user.jpg";
 import { toast } from "react-toastify";
-import axios from "axios";
+import API from "../axios";
 import { setUser } from "../redux/userSlice";
 import MyOrder from "./MyOrder";
 

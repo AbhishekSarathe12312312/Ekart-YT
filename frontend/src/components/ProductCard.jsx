@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { setCart } from "../redux/productSlice";
-import axios from "axios";
+import API from "../axios";
 
 const ProductCard = ({ product }) => {
   const { productImg, productPrice, productName } = product;
@@ -13,8 +13,8 @@ const ProductCard = ({ product }) => {
 
   const addToCart = async (productId) => {
     try {
-      const res = await axios.post(
-        `https://ekart-yt.onrender.com/api/v1/cart/add`,
+      const res = await API.post(
+        `/api/v1/cart/add`,
         { productId },
         {
           headers: {

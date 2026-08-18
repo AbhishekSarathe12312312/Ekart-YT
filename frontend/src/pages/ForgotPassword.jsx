@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import API from "../axios";
 import {
   ArrowLeft,
   Eye,
@@ -37,8 +37,8 @@ const ForgotPassword = () => {
     try {
       setLoading(true);
 
-      const res = await axios.post(
-        "https://ekart-yt.onrender.com/api/v1/user/forgot-password",
+      const res = await API.post(
+        "/api/v1/user/forgot-password",
         {
           email,
         },
@@ -68,8 +68,8 @@ const ForgotPassword = () => {
     try {
       setLoading(true);
 
-      const res = await axios.post(
-        `https://ekart-yt.onrender.com/api/v1/user/verify-otp/${encodeURIComponent(
+      const res = await API.post(
+        `/api/v1/user/verify-otp/${encodeURIComponent(
           email,
         )}`,
         {
@@ -106,8 +106,8 @@ const ForgotPassword = () => {
     try {
       setLoading(true);
 
-      const res = await axios.post(
-        `https://ekart-yt.onrender.com/api/v1/user/change-password/${encodeURIComponent(
+      const res = await API.post(
+        `/api/v1/user/change-password/${encodeURIComponent(
           email,
         )}`,
         {

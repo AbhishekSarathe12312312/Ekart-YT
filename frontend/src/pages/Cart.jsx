@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import API from "../axios";
 import userLogo from "../assets/user.jpg";
 import { setCart } from "../redux/productSlice";
 import { toast } from "react-toastify";

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import axios from "axios";
+import API from "../axios";
 import { toast } from "react-toastify";
 import userLogo from "../../assets/user.jpg";
 import { setUser } from "../../redux/userSlice";

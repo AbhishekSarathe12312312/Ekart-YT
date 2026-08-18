@@ -2,7 +2,7 @@ import { Edit, Search, Trash2 } from "lucide-react";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ImageUpload from "../../components/ImageUpload";
-import axios from "axios";
+import API from "../axios";
 import { toast } from "react-toastify";
 import { setProducts } from "../../redux/productSlice";
 
