@@ -100,7 +100,7 @@ export const verifyPayment = async (req, res) => {
 
 export const getMyOrder = async (req, res) => {
   try {
-    const userId = req.id;
+    const userId = req.user._id;
     const orders = await Order.find({ user: userId })
       .populate({
         path: "products.productId",

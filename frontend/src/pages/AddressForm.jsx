@@ -58,6 +58,7 @@ const AddressForm = () => {
           shipping,
           amount: total,
           currency: "INR",
+          shippingAddress: addresses[selectedAddress],
         },
         {
           headers: {
@@ -453,7 +454,9 @@ const AddressForm = () => {
             <div className="flex items-center justify-between">
               <span className="text-gray-400">Tax</span>
 
-              <span className="font-semibold text-white">₹{tax.toFixed([2])}</span>
+              <span className="font-semibold text-white">
+                ₹{tax.toFixed(2)}
+              </span>
             </div>
 
             {/* Total */}
@@ -461,7 +464,7 @@ const AddressForm = () => {
               <span className="font-bold text-white">Total</span>
 
               <span className="text-lg font-extrabold text-blue-400">
-                ₹{total.toFixed([2])}
+                ₹{total.toFixed(2)}
               </span>
             </div>
           </div>
