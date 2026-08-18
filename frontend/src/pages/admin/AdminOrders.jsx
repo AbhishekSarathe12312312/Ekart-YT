@@ -22,7 +22,7 @@ const getImageUrl = (product) => {
   if (typeof img !== "string" || !img) return null;
   return img.startsWith("http")
     ? img
-    : `http://localhost:8000/${img.replace(/^\//, "")}`;
+    : `https://ekart-yt.onrender.com/${img.replace(/^\//, "")}`;
 };
 
 const AdminOrders = () => {
@@ -33,7 +33,7 @@ const AdminOrders = () => {
     const fetchOrders = async () => {
       try {
         const token = localStorage.getItem("accessToken");
-        const res = await axios.get("http://localhost:8000/api/v1/orders/all", {
+        const res = await axios.get("https://ekart-yt.onrender.com/api/v1/orders/all", {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (res.data.success) {

@@ -38,7 +38,7 @@ const ForgotPassword = () => {
       setLoading(true);
 
       const res = await axios.post(
-        "http://localhost:8000/api/v1/user/forgot-password",
+        "https://ekart-yt.onrender.com/api/v1/user/forgot-password",
         {
           email,
         },
@@ -69,7 +69,7 @@ const ForgotPassword = () => {
       setLoading(true);
 
       const res = await axios.post(
-        `http://localhost:8000/api/v1/user/verify-otp/${encodeURIComponent(
+        `https://ekart-yt.onrender.com/api/v1/user/verify-otp/${encodeURIComponent(
           email,
         )}`,
         {
@@ -107,7 +107,7 @@ const ForgotPassword = () => {
       setLoading(true);
 
       const res = await axios.post(
-        `http://localhost:8000/api/v1/user/change-password/${encodeURIComponent(
+        `https://ekart-yt.onrender.com/api/v1/user/change-password/${encodeURIComponent(
           email,
         )}`,
         {

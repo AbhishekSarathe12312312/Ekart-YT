@@ -38,7 +38,7 @@ const AdminSales = () => {
         const accessToken = localStorage.getItem("accessToken");
 
         const response = await axios.get(
-          "http://localhost:8000/api/v1/orders/sales",
+          "https://ekart-yt.onrender.com/api/v1/orders/sales",
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,

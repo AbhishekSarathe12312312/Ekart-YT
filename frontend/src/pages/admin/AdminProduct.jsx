@@ -75,7 +75,7 @@ const AdminProduct = () => {
         });
 
       const res = await axios.put(
-        `http://localhost:8000/api/v1/product/update/${editProduct._id}`,
+        `https://ekart-yt.onrender.com/api/v1/product/update/${editProduct._id}`,
         formData,
         {
           headers: {
@@ -117,7 +117,7 @@ const AdminProduct = () => {
       setLoading(true);
 
       const res = await axios.delete(
-        `http://localhost:8000/api/v1/product/delete/${id}`,
+        `https://ekart-yt.onrender.com/api/v1/product/delete/${id}`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,

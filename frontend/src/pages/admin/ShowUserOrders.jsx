@@ -17,7 +17,7 @@ const ShowUserOrders = () => {
   const userId = params.userId || user?._id;
 
   // Backend URL (Agar relative image path ho toh)
-  const BACKEND_URL = "http://localhost:8000";
+  const BACKEND_URL = "https://ekart-yt.onrender.com";
 
   useEffect(() => {
     const fetchOrders = async () => {

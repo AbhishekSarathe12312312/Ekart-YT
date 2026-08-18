@@ -21,7 +21,7 @@ const AdminUsers = () => {
     const accessToken = localStorage.getItem("accessToken");
     try {
       const res = await axios.get(
-        "http://localhost:8000/api/v1/user/all-user",
+        "https://ekart-yt.onrender.com/api/v1/user/all-user",
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,

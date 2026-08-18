@@ -17,7 +17,7 @@ const Navbar = () => {
   const logoutHandler = async () => {
     try {
       const res = await axios.post(
-        `http://localhost:8000/api/v1/user/logout`,
+        `https://ekart-yt.onrender.com/api/v1/user/logout`,
         {},
         {
           headers: {
@@ -57,13 +57,6 @@ const Navbar = () => {
 
         {/* Navigation */}
         <div className="hidden items-center gap-1 md:flex">
-          <Link
-            to="/all"
-            className="group relative rounded-xl px-4 py-2 text-sm font-semibold text-gray-400 transition-all duration-300 hover:bg-gray-800/80 hover:text-white"
-          >
-            <span className="relative z-10">All</span>
-            <span className="absolute bottom-1 left-1/2 h-0.5 w-0 -translate-x-1/2 rounded-full bg-white transition-all duration-300 group-hover:w-5" />
-          </Link>
           <Link
             to="/"
             className="group relative rounded-xl px-4 py-2 text-sm font-semibold text-gray-400 transition-all duration-300 hover:bg-gray-800/80 hover:text-white"

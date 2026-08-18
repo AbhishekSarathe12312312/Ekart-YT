@@ -21,7 +21,7 @@ const Products = () => {
   const getAllProducts = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8000/api/v1/product/getallproducts`,
+        `https://ekart-yt.onrender.com/api/v1/product/getallproducts`,
       );
       if (res.data.success) {
         setAllProducts(res.data.products);

@@ -46,7 +46,7 @@ const AddProduct = () => {
 
     try {
       const res = await axios.post(
-        `http://localhost:8000/api/v1/product/addproduct`,
+        `https://ekart-yt.onrender.com/api/v1/product/addproduct`,
         formData,
         {
           headers: {

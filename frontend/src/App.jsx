@@ -39,15 +39,7 @@ const App = () => {
             </>
           }
         />
-        <Route
-          path="/all"
-          element={
-            <>
-              <Navbar/>
-              <All />
-            </>
-          }
-        />
+
         <Route path="/signup" element={<Signup />} />
         <Route
           path="/login"
@@ -61,7 +53,7 @@ const App = () => {
           path="/forget-password"
           element={
             <>
-              <ForgotPassword/>
+              <ForgotPassword />
             </>
           }
         />
