@@ -24,7 +24,6 @@ import AddressForm from "./pages/AddressForm";
 import OrderSuccess from "./pages/OrderSuccess";
 import MyOrder from "./pages/MyOrder";
 import Features from "./components/Features";
-import All from "./pages/All";
 import ForgotPassword from "./pages/ForgotPassword";
 
 const App = () => {
