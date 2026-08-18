@@ -9,7 +9,7 @@ import orderRoute from "./routes/orderRoute.js";
 import cors from "cors";
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 //middlware
 app.use(express.json());
