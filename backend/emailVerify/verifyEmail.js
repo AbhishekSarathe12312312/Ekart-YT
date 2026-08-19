@@ -1,7 +1,6 @@
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 dotenv.config();
-// Filename - tokenSender.js
 
 export const verifyEmail = (token, email) => {
   const transporter = nodemailer.createTransport({

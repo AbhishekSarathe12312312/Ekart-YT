@@ -49,7 +49,7 @@ const App = () => {
           }
         />
         <Route
-          path="/forget-password"
+          path="/forgot-password"
           element={
             <>
               <ForgotPassword />
