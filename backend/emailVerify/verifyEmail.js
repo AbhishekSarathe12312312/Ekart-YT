@@ -1,42 +1,54 @@
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
-  family: 4,
-  auth: {
-    user: process.env.MAIL_USER,
-    pass: process.env.MAIL_PASS,
-  },
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const verifyEmail = async (token, email) => {
   try {
-    const mailConfigurations = {
-      from: process.env.MAIL_USER,
-      to: email,
+    const verificationUrl = `https://ekart-yt.vercel.app/verify/${token}`;
+
+    const { data, error } = await resend.emails.send({
+      from: "onboarding@resend.dev",
+      to: [email],
       subject: "Email Verification",
-      text: `Hi! There,
+      html: `
+        <h2>Email Verification</h2>
 
-You have recently visited our website and entered your email.
+        <p>Hi! There,</p>
 
-Please follow the given link to verify your email:
+        <p>You have recently visited our website and entered your email.</p>
 
-http://localhost:5173/verify/${token}
+        <p>Please click the button below to verify your email:</p>
 
-Thanks`,
-    };
+        <a
+          href="${verificationUrl}"
+          style="
+            display:inline-block;
+            padding:12px 20px;
+            background:#6366f1;
+            color:white;
+            text-decoration:none;
+            border-radius:6px;
+          "
+        >
+          Verify Email
+        </a>
 
-    const info = await transporter.sendMail(mailConfigurations);
+        <p>Thanks</p>
+      `,
+    });
+
+    if (error) {
+      console.error("❌ VERIFICATION MAIL ERROR:", error);
+      throw new Error(error.message);
+    }
 
     console.log("✅ Verification Email Sent Successfully");
-    console.log("Message ID:", info.messageId);
+    console.log("Message ID:", data.id);
 
-    return info;
+    return data;
   } catch (error) {
     console.error("❌ VERIFICATION MAIL ERROR:", error);
     throw error;
