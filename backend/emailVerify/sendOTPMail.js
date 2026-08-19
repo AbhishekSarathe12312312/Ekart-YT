@@ -3,18 +3,20 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASS,
+  },
+});
+
 export const sendOTPMail = async (otp, email) => {
   console.log("MAIL_USER:", process.env.MAIL_USER);
   console.log("MAIL_PASS exists:", !!process.env.MAIL_PASS);
   console.log("Sending OTP to:", email);
-
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.MAIL_USER,
-      pass: process.env.MAIL_PASS,
-    },
-  });
 
   try {
     await transporter.verify();
@@ -39,8 +41,7 @@ export const sendOTPMail = async (otp, email) => {
 
     return info;
   } catch (error) {
-    console.log("❌ MAIL ERROR");
-    console.log(error);
+    console.error("❌ MAIL ERROR:", error);
     throw error;
   }
 };
