@@ -7,6 +7,7 @@ const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 587,
   secure: false,
+  family: 4,
   auth: {
     user: process.env.MAIL_USER,
     pass: process.env.MAIL_PASS,
@@ -37,7 +38,6 @@ export const sendOTPMail = async (otp, email) => {
 
     console.log("✅ EMAIL SENT");
     console.log("Message ID:", info.messageId);
-    console.log("Response:", info.response);
 
     return info;
   } catch (error) {
