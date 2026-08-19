@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import API from "../axios";
 import { toast } from "react-toastify";
@@ -8,14 +8,14 @@ import { setCart } from "../redux/productSlice";
 const SingleProduct = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  // एक्टिव (सिलेक्टेड) इमेज इंडेक्स को ट्रैक करने के लिए स्टेट
+  // Active image index track karne ke liye state
   const [activeImageIdx, setActiveImageIdx] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
   const { products } = useSelector((store) => store.product);
   const product = products.find((item) => item._id === id);
-  const accessToken = localStorage.getItem("accessToken");
 
   const handleDecrease = () => {
     if (quantity > 1) setQuantity((prev) => prev - 1);
@@ -26,6 +26,15 @@ const SingleProduct = () => {
   };
 
   const addToCart = async (productId) => {
+    // 1. Function execution ke time token fetch karein
+    const accessToken = localStorage.getItem("accessToken");
+
+    // 2. Auth Guard Check: Token na hone par login page redirect karein
+    if (!accessToken) {
+      toast.warning("Please login to add items to cart");
+      return navigate("/login");
+    }
+
     try {
       const res = await API.post(
         "/api/v1/cart/add",
@@ -175,10 +184,10 @@ const SingleProduct = () => {
                   </div>
                 </div>
 
-                {/* Add To Cart */}
+                {/* Add To Cart Button */}
                 <button
                   onClick={() => addToCart(product._id)}
-                  className="mt-4 cursor-pointer flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-blue-600/20 transition hover:-700 active:scale-[0.98]"
+                  className="mt-4 flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-blue-600/20 transition hover:bg-blue-700 active:scale-[0.98]"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

@@ -7,11 +7,19 @@ import API from "../axios";
 
 const ProductCard = ({ product }) => {
   const { productImg, productPrice, productName } = product;
-  const accessToken = localStorage.getItem("accessToken");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const addToCart = async (productId) => {
+    // 1. Token Check: Getting token at button click to avoid stale values
+    const accessToken = localStorage.getItem("accessToken");
+
+    // 2. Auth Guard: If not logged in, warn user and redirect
+    if (!accessToken) {
+      toast.warning("Please login to add items to cart");
+      return navigate("/login");
+    }
+
     try {
       const res = await API.post(
         `/api/v1/cart/add`,
@@ -28,6 +36,7 @@ const ProductCard = ({ product }) => {
       }
     } catch (error) {
       console.error(error);
+      toast.error(error.response?.data?.message || "Failed to add to cart");
     }
   };
 

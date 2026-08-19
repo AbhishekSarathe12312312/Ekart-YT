@@ -5,7 +5,6 @@ import ImageUpload from "../../components/ImageUpload";
 
 import API from "../../axios.js";
 
-
 import { toast } from "react-toastify";
 import { setProducts } from "../../redux/productSlice";
 
@@ -174,9 +173,9 @@ const AdminProduct = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gray-950 p-6 text-white">
+    <div className="min-h-screen bg-gray-950 p-3 sm:p-6 text-white">
       {/* ================= SEARCH & SORT ================= */}
-      <div className="mb-6 flex items-center gap-3">
+      <div className="mb-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
         {/* Search */}
         <div className="relative flex-1">
           <Search
@@ -197,7 +196,7 @@ const AdminProduct = () => {
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value)}
-          className="rounded-xl border border-gray-700 bg-gray-900 px-4 py-2.5 text-sm text-gray-300 outline-none transition focus:border-gray-500"
+          className="rounded-xl border border-gray-700 bg-gray-900 px-4 py-2.5 text-sm text-gray-300 outline-none transition focus:border-gray-500 w-full sm:w-auto shrink-0"
         >
           <option value="" className="bg-gray-900">
             Sort by Price
@@ -214,41 +213,43 @@ const AdminProduct = () => {
       </div>
 
       {/* ================= PRODUCTS ================= */}
-      <div className="grid gap-4">
+      <div className="grid  gap-3 sm:gap-4">
         {sortedProducts.length > 0 ? (
           sortedProducts.map((product) => (
             <div
               key={product._id}
-              className="flex items-center justify-between rounded-2xl border border-gray-800 bg-gray-900 p-4 shadow-lg transition hover:border-gray-700"
+              className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl  border border-gray-800 bg-gray-900 p-3 sm:p-4 shadow-lg transition hover:border-gray-700"
             >
               {/* Product Information */}
-              <div className="flex items-center gap-5">
+              <div className="flex items-start sm:items-center gap-3.5 sm:gap-5 min-w-0 flex-1">
                 <img
                   src={product.productImg?.[0]?.url || "/placeholder.png"}
                   alt={product.productName}
-                  className="h-16 w-16 rounded-xl border border-gray-700 object-cover"
+                  className="h-16 w-16 sm:h-20 sm:w-20 shrink-0 rounded-xl border border-gray-700 object-cover"
                 />
 
-                <div>
-                  <h1 className="text-lg font-bold text-white">
+                <div className="min-w-0 flex-1">
+                  <h1 className="text-base sm:text-lg font-bold text-white truncate">
                     {product.productName}
                   </h1>
 
-                  <p className="mt-1 font-semibold text-gray-200">
+                  <p className="mt-0.5 sm:mt-1 font-semibold text-gray-200 text-sm sm:text-base">
                     ₹{product.productPrice}
                   </p>
 
-                  <p className="mt-1 text-sm text-gray-500">{product.brand}</p>
+                  <p className="mt-0.5 text-xs sm:text-sm text-gray-500 truncate">
+                    {product.brand}
+                  </p>
                 </div>
               </div>
 
               {/* Buttons */}
-              <div className="flex gap-3">
+              <div className="flex items-center gap-2.5 pt-3 sm:pt-0 border-t border-gray-800/80 sm:border-t-0 justify-end w-full sm:w-auto">
                 {/* Edit */}
                 <button
                   type="button"
                   onClick={() => handleEdit(product)}
-                  className="flex items-center gap-1.5 rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-sm font-medium text-gray-300 transition hover:bg-gray-700 hover:text-white"
+                  className="flex-1 sm:flex-none justify-center flex items-center gap-1.5 rounded-xl border border-gray-700 bg-gray-800 px-3.5 py-2 text-xs sm:text-sm font-medium text-gray-300 transition hover:bg-gray-700 hover:text-white"
                 >
                   <Edit size={16} />
                   Edit
@@ -258,7 +259,7 @@ const AdminProduct = () => {
                 <button
                   type="button"
                   onClick={() => setDeleteProductId(product._id)}
-                  className="flex items-center gap-1.5 rounded-lg border border-red-900 bg-red-950 px-3 py-2 text-sm font-medium text-red-400 transition hover:bg-red-900 hover:text-red-300"
+                  className="flex-1 sm:flex-none justify-center flex items-center gap-1.5 rounded-xl border border-red-900/60 bg-red-950/60 px-3.5 py-2 text-xs sm:text-sm font-medium text-red-400 transition hover:bg-red-900/80 hover:text-red-300"
                 >
                   <Trash2 size={16} />
                   Delete
@@ -268,28 +269,33 @@ const AdminProduct = () => {
           ))
         ) : (
           <div className="rounded-2xl border border-gray-800 bg-gray-900 py-12 text-center">
-            <p className="text-gray-500">No matching products found.</p>
+            <p className="text-sm text-gray-500">No matching products found.</p>
           </div>
         )}
       </div>
 
       {/* ================= EDIT MODAL ================= */}
       {editProduct && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/70 p-4 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-3 sm:p-4 backdrop-blur-sm">
           <form
             onSubmit={handleSave}
-            className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-2xl border border-gray-700 bg-gray-900 p-6 text-white shadow-2xl"
+            className="flex max-h-[85vh] sm:max-h-[90vh] w-full max-w-md flex-col rounded-2xl border border-gray-700 bg-gray-900 text-white shadow-2xl"
           >
-            <h1 className="mb-1 text-xl font-bold text-white">Edit Product</h1>
+            {/* Header */}
+            <div className="p-4 sm:p-6 pb-2 border-b border-gray-800 shrink-0">
+              <h1 className="text-lg sm:text-xl font-bold text-white">
+                Edit Product
+              </h1>
+              <p className="text-xs sm:text-sm text-gray-400">
+                Make changes to your product details below.
+              </p>
+            </div>
 
-            <p className="mb-5 text-sm text-gray-400">
-              Make changes to your product here.
-            </p>
-
-            <div className="grid gap-4">
+            {/* Scrollable Form Body */}
+            <div className="space-y-4 overflow-y-auto p-4 sm:p-6">
               {/* Product Name */}
               <div>
-                <label className="block text-sm font-semibold text-gray-200">
+                <label className="block text-xs sm:text-sm font-semibold text-gray-200">
                   Product Name
                 </label>
 
@@ -298,14 +304,14 @@ const AdminProduct = () => {
                   name="productName"
                   value={editProduct.productName || ""}
                   onChange={handleChange}
-                  className="mt-1.5 w-full rounded-xl border border-gray-700 bg-gray-800 px-3 py-2.5 text-sm text-white outline-none placeholder:text-gray-500 focus:border-gray-500 focus:ring-1 focus:ring-gray-600"
+                  className="mt-1.5 w-full rounded-xl border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white outline-none placeholder:text-gray-500 focus:border-gray-500 focus:ring-1 focus:ring-gray-600"
                   required
                 />
               </div>
 
               {/* Price */}
               <div>
-                <label className="block text-sm font-semibold text-gray-200">
+                <label className="block text-xs sm:text-sm font-semibold text-gray-200">
                   Price
                 </label>
 
@@ -314,14 +320,14 @@ const AdminProduct = () => {
                   name="productPrice"
                   value={editProduct.productPrice || ""}
                   onChange={handleChange}
-                  className="mt-1.5 w-full rounded-xl border border-gray-700 bg-gray-800 px-3 py-2.5 text-sm text-white outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-600"
+                  className="mt-1.5 w-full rounded-xl border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-600"
                   required
                 />
               </div>
 
               {/* Brand */}
               <div>
-                <label className="block text-sm font-semibold text-gray-200">
+                <label className="block text-xs sm:text-sm font-semibold text-gray-200">
                   Brand
                 </label>
 
@@ -330,14 +336,14 @@ const AdminProduct = () => {
                   name="brand"
                   value={editProduct.brand || ""}
                   onChange={handleChange}
-                  className="mt-1.5 w-full rounded-xl border border-gray-700 bg-gray-800 px-3 py-2.5 text-sm text-white outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-600"
+                  className="mt-1.5 w-full rounded-xl border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-600"
                   required
                 />
               </div>
 
               {/* Category */}
               <div>
-                <label className="block text-sm font-semibold text-gray-200">
+                <label className="block text-xs sm:text-sm font-semibold text-gray-200">
                   Category
                 </label>
 
@@ -346,14 +352,14 @@ const AdminProduct = () => {
                   name="category"
                   value={editProduct.category || ""}
                   onChange={handleChange}
-                  className="mt-1.5 w-full rounded-xl border border-gray-700 bg-gray-800 px-3 py-2.5 text-sm text-white outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-600"
+                  className="mt-1.5 w-full rounded-xl border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-600"
                   required
                 />
               </div>
 
               {/* Description */}
               <div>
-                <label className="block text-sm font-semibold text-gray-200">
+                <label className="block text-xs sm:text-sm font-semibold text-gray-200">
                   Description
                 </label>
 
@@ -361,7 +367,7 @@ const AdminProduct = () => {
                   name="productDesc"
                   value={editProduct.productDesc || ""}
                   onChange={handleChange}
-                  className="mt-1.5 h-24 w-full resize-none rounded-xl border border-gray-700 bg-gray-800 p-3 text-sm text-white outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-600"
+                  className="mt-1.5 h-20 sm:h-24 w-full resize-none rounded-xl border border-gray-700 bg-gray-800 p-3 text-sm text-white outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-600"
                 />
               </div>
 
@@ -372,12 +378,12 @@ const AdminProduct = () => {
               />
             </div>
 
-            {/* Buttons */}
-            <div className="mt-6 flex justify-end gap-3">
+            {/* Fixed Footer Buttons */}
+            <div className="flex justify-end gap-3 border-t border-gray-800 p-4 shrink-0 bg-gray-900/90 rounded-b-2xl">
               <button
                 type="button"
                 onClick={() => setEditProduct(null)}
-                className="rounded-lg border border-gray-700 bg-gray-800 px-4 py-2 text-sm font-medium text-gray-300 transition hover:bg-gray-700 hover:text-white"
+                className="flex-1 sm:flex-none rounded-xl border border-gray-700 bg-gray-800 px-4 py-2 text-xs sm:text-sm font-medium text-gray-300 transition hover:bg-gray-700 hover:text-white"
               >
                 Cancel
               </button>
@@ -385,7 +391,7 @@ const AdminProduct = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="rounded-lg bg-white px-4 py-2 text-sm font-bold text-black transition hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex-1 sm:flex-none rounded-xl bg-white px-4 py-2 text-xs sm:text-sm font-bold text-black transition hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {loading ? "Saving..." : "Save Changes"}
               </button>
@@ -396,13 +402,13 @@ const AdminProduct = () => {
 
       {/* ================= DELETE CONFIRMATION MODAL ================= */}
       {deleteProductId && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
-          <div className="w-full max-w-sm rounded-2xl border border-gray-700 bg-gray-900 p-6 text-white shadow-2xl">
-            <h2 className="mb-2 text-xl font-bold text-white">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-sm rounded-2xl border border-gray-700 bg-gray-900 p-5 sm:p-6 text-white shadow-2xl">
+            <h2 className="mb-2 text-lg sm:text-xl font-bold text-white">
               Delete Product?
             </h2>
 
-            <p className="mb-6 text-sm leading-6 text-gray-400">
+            <p className="mb-6 text-xs sm:text-sm leading-relaxed text-gray-400">
               Are you sure you want to delete this product? This action cannot
               be undone.
             </p>
@@ -412,7 +418,7 @@ const AdminProduct = () => {
                 type="button"
                 onClick={() => setDeleteProductId(null)}
                 disabled={loading}
-                className="rounded-lg border border-gray-700 bg-gray-800 px-4 py-2 text-sm font-medium text-gray-300 transition hover:bg-gray-700 hover:text-white disabled:opacity-50"
+                className="flex-1 sm:flex-none justify-center rounded-xl border border-gray-700 bg-gray-800 px-4 py-2 text-xs sm:text-sm font-medium text-gray-300 transition hover:bg-gray-700 hover:text-white disabled:opacity-50"
               >
                 Cancel
               </button>
@@ -421,7 +427,7 @@ const AdminProduct = () => {
                 type="button"
                 onClick={() => deleteProductHandler(deleteProductId)}
                 disabled={loading}
-                className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex-1 sm:flex-none justify-center rounded-xl bg-red-600 px-4 py-2 text-xs sm:text-sm font-semibold text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {loading ? "Deleting..." : "Yes, Delete"}
               </button>
