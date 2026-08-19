@@ -41,45 +41,53 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className="w-full overflow-hidden rounded-lg bg-gray-900 text-white transition duration-300 hover:shadow-lg">
+    <div className="w-full overflow-hidden rounded-xl border border-gray-800 bg-gray-900 text-white shadow-sm transition duration-300 hover:border-gray-700 hover:shadow-lg">
       {/* Product Image */}
-      <div className="relative">
+      <div className="relative overflow-hidden bg-gray-800">
         <img
           onClick={() => navigate(`/products/${product._id}`)}
           src={productImg?.[0]?.url}
           alt={productName}
-          className="h-40 w-full cursor-pointer object-cover transition duration-300 hover:scale-105"
+          className="h-36 w-full cursor-pointer object-cover transition duration-300 hover:scale-105 sm:h-44"
         />
 
-        {/* Brand */}
-        <span className="absolute left-2 top-2 rounded bg-black px-2 py-1 text-[10px]">
+        {/* Brand Badge */}
+        <span className="absolute left-1.5 top-1.5 rounded-md bg-black/70 px-1.5 py-0.5 text-[9px] font-medium text-gray-200 backdrop-blur-md sm:left-2 sm:top-2 sm:text-[10px]">
           {product.brand || "Product"}
         </span>
       </div>
 
-      {/* Product Details */}
-      <div className="p-3">
+      {/* Product Details (Compact Mobile View) */}
+      <div className="p-2 sm:p-3">
         {/* Product Name */}
-        <h1 className="truncate text-base font-semibold text-white">
+        <h1
+          onClick={() => navigate(`/products/${product._id}`)}
+          className="cursor-pointer truncate text-xs font-semibold text-white sm:text-sm"
+          title={productName}
+        >
           {productName}
         </h1>
 
         {/* Category */}
-        <p className="mt-1 text-xs text-gray-400">
+        <p className="truncate text-[10px] text-gray-400 capitalize sm:text-xs">
           {product.category || "Fashion"}
         </p>
 
         {/* Price + Rating */}
-        <div className="mt-2 flex items-center justify-between">
-          <h2 className="text-base font-medium text-white">₹{productPrice}</h2>
+        <div className="mt-1.5 flex items-center justify-between gap-1 sm:mt-2">
+          <h2 className="text-xs font-bold text-white sm:text-sm">
+            ₹{productPrice}
+          </h2>
 
-          <p className="text-xs text-yellow-400">★ {product.rating || "4.5"}</p>
+          <span className="flex items-center gap-0.5 text-[10px] font-medium text-yellow-400 sm:text-xs">
+            ★ {product.rating || "4.5"}
+          </span>
         </div>
 
-        {/* Add To Cart */}
+        {/* Add To Cart Button */}
         <button
           onClick={() => addToCart(product._id)}
-          className="mt-3 w-full cursor-pointer rounded bg-white py-1.5 text-sm font-medium text-black transition duration-200 hover:bg-gray-200 active:scale-95"
+          className="mt-2 w-full cursor-pointer rounded-lg bg-white py-1 text-xs font-semibold text-black transition duration-200 hover:bg-gray-200 active:scale-95 sm:py-1.5 sm:text-sm"
         >
           Add to Cart
         </button>

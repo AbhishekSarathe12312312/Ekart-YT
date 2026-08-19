@@ -57,15 +57,15 @@ const AdminOrders = () => {
   }
 
   return (
-    <div className="mx-auto max-w-4xl rounded-xl bg-gray-800 px-4 text-white">
+    <div className="mx-auto max-w-4xl rounded-xl bg-gray-800 px-3 text-white">
       {/* Header */}
       <div className="mb-4 flex items-center justify-between border-b border-gray-800 pb-4">
         <div>
-          <h2 className="mt-4 text-xl font-bold text-white">Admin Orders</h2>
+          <h2 className="mt-2 text-xl font-bold text-white">Admin Orders</h2>
           <p className="text-xs text-gray-400">Manage customer purchases.</p>
         </div>
 
-        <span className="rounded-full border border-gray-700 bg-gray-800 px-3 py-1 text-xs font-semibold text-gray-300">
+        <span className="rounded border border-gray-500 bg-green-950 px-3 py-1 text-xs font-semibold text-gray-300">
           Total: {orders.length}
         </span>
       </div>
@@ -85,7 +85,7 @@ const AdminOrders = () => {
             return (
               <div
                 key={order._id}
-                className="rounded-2xl border border-gray-800 bg-gray-900 p-4 shadow-lg transition hover:border-gray-700"
+                className="rounded border border-gray-800 bg-gray-900 p-4 shadow-lg transition hover:border-gray-700"
               >
                 {/* Order Info Bar */}
                 <div className="flex flex-wrap items-center justify-between gap-2 border-b border-gray-800 pb-3 text-xs">
@@ -174,7 +174,7 @@ const AdminOrders = () => {
                 {/* Footer / Summary */}
                 <div className="mt-3 flex items-center justify-between border-t border-gray-800 pt-3 text-xs">
                   <span
-                    className={`rounded-full px-2.5 py-1 font-semibold ring-1 ${getStatusStyle(
+                    className={`rounded px-2.5 py-1 font-semibold ring-1 ${getStatusStyle(
                       order.status,
                     )}`}
                   >
@@ -182,8 +182,8 @@ const AdminOrders = () => {
                   </span>
 
                   <div className="text-right">
-                    <span className="text-gray-500">Total Paid: </span>
-                    <span className="text-lg font-bold text-white">
+                    <span className="text-gray-500 mr-1 text-[14px]">Total Paid: </span>
+                    <span className="text-lg font-bold text-white text-[15px]">
                       ₹{finalPaidBill.toLocaleString("en-IN")}
                     </span>
                   </div>

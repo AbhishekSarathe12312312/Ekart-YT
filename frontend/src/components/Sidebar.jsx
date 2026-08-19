@@ -23,24 +23,40 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* Mobile Header Bar */}
-      <div className="flex items-center justify-between border-b border-gray-800 bg-gray-900 p-4 text-white md:hidden">
-        <span className="font-bold">Dashboard</span>
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="rounded-lg p-2 text-gray-300 hover:bg-gray-800 hover:text-white"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+      {/* ================= MOBILE VIEW (Horizontal Scroll Tabs) ================= */}
+      <div className="sticky top-0 z-40 border-b border-gray-800 bg-gray-900 text-white md:hidden">
+        {/* Mobile Top Title */}
+        <div className="px-4 pt-3 pb-2">
+          <span className="text-base font-bold tracking-wide">Admin Panel</span>
+        </div>
+
+        {/* Horizontal Scrollable Navigation */}
+        <div className="flex items-center gap-2 overflow-x-auto px-4 pb-3 scrollbar-hide">
+          {navLinks.map((link) => {
+            const Icon = link.icon;
+            return (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                className={({ isActive }) =>
+                  `flex shrink-0 items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-semibold transition-all ${
+                    isActive
+                      ? "bg-white text-black shadow-md"
+                      : "border border-gray-800 bg-gray-950/60 text-gray-400 hover:bg-gray-800 hover:text-white"
+                  }`
+                }
+              >
+                <Icon size={16} />
+                <span>{link.label}</span>
+              </NavLink>
+            );
+          })}
+        </div>
       </div>
 
-      {/* Sidebar Overlay/Drawer */}
-      <aside
-        className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col gap-2 border-r border-gray-800 bg-gray-900 p-4 text-white shadow-lg transition-transform duration-300 ease-in-out md:sticky md:top-0 md:h-screen md:translate-x-0 ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-        <div className="mb-4 hidden text-xl font-bold border-b border-gray-800 pb-2 md:block">
+      {/* ================= LAPTOP / DESKTOP VIEW (Full Sidebar) ================= */}
+      <aside className="hidden md:sticky md:top-0 md:flex md:h-screen md:w-64 md:shrink-0 md:flex-col md:gap-2 md:border-r md:border-gray-800 md:bg-gray-900 md:p-4 md:text-white">
+        <div className="mb-4 border-b border-gray-800 pb-3 text-xl font-bold">
           Admin Panel
         </div>
 
@@ -50,9 +66,8 @@ const Sidebar = () => {
             <NavLink
               key={link.to}
               to={link.to}
-              onClick={() => setIsOpen(false)}
               className={({ isActive }) =>
-                `flex items-center gap-3 rounded-lg px-4 py-3 font-medium transition ${
+                `flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all ${
                   isActive
                     ? "bg-white text-black shadow-sm"
                     : "text-gray-300 hover:bg-gray-800 hover:text-white"
@@ -65,14 +80,6 @@ const Sidebar = () => {
           );
         })}
       </aside>
-
-      {/* Backdrop for Mobile Menu */}
-      {isOpen && (
-        <div
-          onClick={() => setIsOpen(false)}
-          className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden"
-        />
-      )}
     </>
   );
 };

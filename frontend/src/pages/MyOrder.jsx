@@ -8,14 +8,11 @@ const MyOrder = ({ onClose }) => {
   const getUserOrders = async () => {
     try {
       const accessToken = localStorage.getItem("accessToken");
-      const res = await API.get(
-        `/api/v1/orders/myorder`,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
+      const res = await API.get(`/api/v1/orders/myorder`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
         },
-      );
+      });
       if (res.data.success) {
         setUserOrder(res.data.orders || []);
       }
@@ -30,110 +27,125 @@ const MyOrder = ({ onClose }) => {
 
   return (
     <>
-      <div className="mx-auto bg-gray-800 scrollbar-hide max-w-full p-10">
+      {/* Container: Max-width fixed, smooth scrolling */}
+      <div className="mx-auto w-full max-w-4xl rounded-2xl bg-gray-900 p-3 sm:p-6 md:p-8 border border-gray-800 shadow-2xl">
         {/* Header */}
-        <div className="mb-3  border-b border-gray-800 pb-4">
-          <h1 className="text-xl font-bold text-white">Order History</h1>
+        <div className="mb-3 flex items-center justify-between border-b border-gray-800 pb-3 sm:mb-5 sm:pb-4">
+          <div>
+            <h1 className="text-base font-bold text-white sm:text-xl md:text-2xl">
+              Order History
+            </h1>
+            <p className="text-[11px] text-gray-400 sm:text-xs">
+              Track and manage your past orders
+            </p>
+          </div>
 
           {onClose && (
             <button
               onClick={onClose}
-              className="rounded-lg p-2 text-gray-400 transition hover:bg-gray-800 hover:text-white"
+              aria-label="Close"
+              className="rounded-xl p-1.5 text-gray-400 transition hover:bg-gray-800 hover:text-white sm:p-2"
             >
-              <X size={20} />
+              <X className="h-5 w-5 sm:h-6 sm:w-6" />
             </button>
           )}
         </div>
 
-        {/* No Orders */}
+        {/* No Orders State */}
         {userOrder?.length === 0 ? (
-          <div className="rounded-2xl border border-gray-800 bg-gray-900 py-12 text-center">
-            <p className="text-lg font-medium text-gray-400">
+          <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-gray-800 bg-gray-950/50 py-10 px-4 text-center">
+            <div className="mb-2 text-3xl sm:text-4xl">📦</div>
+            <p className="text-xs font-medium text-gray-400 sm:text-sm">
               No orders found for this user.
             </p>
           </div>
         ) : (
-          <div className="max-h-[70vh] space-y-5 overflow-y-auto pr-1">
+          /* Orders List Container */
+          <div className="max-h-[70vh] space-y-3 sm:space-y-4 overflow-y-auto pr-1 text-gray-300 scrollbar-thin scrollbar-thumb-gray-700">
             {userOrder?.map((order) => (
               <div
                 key={order._id}
-                className="relative flex flex-col gap-5 rounded-2xl border border-gray-800 bg-gray-900 p-6 text-gray-300 shadow-lg"
+                className="relative flex flex-col gap-3 rounded-xl border border-gray-800 bg-gray-950/70 p-3 sm:p-5 shadow-sm transition hover:border-gray-700/80"
               >
-                {/* Order ID & Amount */}
-                <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2 border-b border-gray-800 pb-4">
-                  <span className="text-base font-bold text-white">
-                    Order ID:{" "}
-                    <span className="break-all font-normal text-gray-400">
-                      {order._id}
-                    </span>
-                  </span>
+                {/* Top Row: Order ID & Status */}
+                <div className="flex items-start justify-between gap-2 border-b border-gray-800/80 pb-2.5">
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-white sm:text-sm">
+                      <span>Order</span>
+                      <span className="truncate font-mono text-[11px] font-normal text-gray-400 sm:text-xs">
+                        #{order._id}
+                      </span>
+                    </div>
+                    <p className="mt-0.5 text-[11px] text-gray-400 sm:text-xs">
+                      Amount:{" "}
+                      <span className="font-semibold text-white">
+                        {order.currency || "INR"}{" "}
+                        {order.amount ? order.amount.toFixed(2) : "0.00"}
+                      </span>
+                    </p>
+                  </div>
 
-                  <span className="text-sm font-medium text-gray-500">
-                    Amount:{" "}
-                    <span className="font-bold text-gray-200">
-                      {order.currency || "INR"}{" "}
-                      {order.amount ? order.amount.toFixed(2) : "0.00"}
-                    </span>
+                  {/* Status Badge */}
+                  <span
+                    className={`shrink-0 rounded-md px-2 py-0.5 text-[10px] sm:px-2.5 sm:py-1 sm:text-xs font-semibold tracking-wide text-white ${
+                      order.status === "Paid" || !order.status
+                        ? "bg-emerald-600/90"
+                        : order.status === "Failed"
+                          ? "bg-rose-600/90"
+                          : "bg-amber-600/90"
+                    }`}
+                  >
+                    {order.status || "Paid"}
                   </span>
                 </div>
 
-                {/* User Details & Status */}
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                  <div className="space-y-1">
-                    <p className="text-sm font-medium text-gray-200">
-                      <span className="text-gray-500">User:</span>{" "}
+                {/* User Details */}
+                <div className="flex flex-col gap-0.5 text-[11px] sm:text-xs text-gray-400">
+                  <p className="truncate">
+                    <span className="text-gray-500">User:</span>{" "}
+                    <span className="text-gray-200">
                       {order.user?.firstName || "Rohit"}{" "}
                       {order.user?.lastName || "Singh"}
-                    </p>
-
-                    <p className="text-sm text-gray-400">
-                      <span className="text-gray-500">Email:</span>{" "}
-                      {order.user?.email || "rohitsingh280504@gmail.com"}
-                    </p>
-                  </div>
-
-                  {/* Status */}
-                  <div>
-                    <span
-                      className={`inline-block rounded-lg px-4 py-1.5 text-sm font-semibold tracking-wide text-white shadow-sm ${
-                        order.status === "Paid" || !order.status
-                          ? "bg-green-600"
-                          : order.status === "Failed"
-                            ? "bg-red-600"
-                            : "bg-amber-600"
-                      }`}
-                    >
-                      {order.status || "Paid"}
                     </span>
-                  </div>
+                  </p>
+                  <p className="truncate">
+                    <span className="text-gray-500">Email:</span>{" "}
+                    <span className="text-gray-200">
+                      {order.user?.email || "rohitsingh280504@gmail.com"}
+                    </span>
+                  </p>
                 </div>
 
-                {/* Products */}
-                <div className="border-t border-gray-800 pt-4">
-                  <h3 className="mb-3 font-semibold text-white">Products</h3>
+                {/* Products List */}
+                <div className="pt-1">
+                  <p className="mb-1.5 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
+                    Items ({order.products?.length || 0})
+                  </p>
 
-                  <ul className="space-y-2">
-                    {order.products.map((product, index) => (
-                      <li
+                  <div className="grid gap-2">
+                    {order.products?.map((product, index) => (
+                      <div
                         key={index}
-                        className="flex items-center gap-4 rounded-xl border border-gray-700 bg-gray-800 p-3 transition hover:bg-gray-750"
+                        className="flex items-center gap-2.5 rounded-lg border border-gray-800/80 bg-gray-900/60 p-1.5 sm:p-2"
                       >
                         <img
-                          className="h-16 w-16 rounded-lg object-cover"
+                          className="h-10 w-10 shrink-0 rounded-md object-cover sm:h-12 sm:w-12"
                           src={
-                            product.productId?.productImg?.[0]?.url
+                            product.productId?.productImg?.[0]?.url ||
+                            "/placeholder.png"
                           }
-                          alt={product.name || "Product"}
+                          alt={product.productId?.productName || "Product"}
                         />
 
-                        <div className="flex-1">
-                          <span className="text-sm font-medium text-gray-200">
-                            {product.productId?.productName}
-                          </span>
+                        <div className="min-w-0 flex-1">
+                          <p className="truncate text-xs font-medium text-gray-200 sm:text-sm">
+                            {product.productId?.productName ||
+                              "Unnamed Product"}
+                          </p>
                         </div>
-                      </li>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               </div>
             ))}

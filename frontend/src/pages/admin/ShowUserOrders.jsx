@@ -27,14 +27,11 @@ const ShowUserOrders = () => {
 
       try {
         setLoading(true);
-        const res = await API.get(
-          `/api/v1/orders/user-order/${userId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
+        const res = await API.get(`/api/v1/orders/user-order/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
           },
-        );
+        });
 
         if (res.data.success) {
           setOrders(res.data.orders || []);
@@ -99,14 +96,14 @@ const ShowUserOrders = () => {
   };
 
   return (
-    <div className="mx-auto my-10 max-w-3xl rounded-xl border border-gray-800 bg-gray-800 p-6 shadow-md">
+    <div className="mx-auto my-4 sm:my-10 max-w-3xl rounded-2xl border border-gray-800/80 bg-gray-900 p-3.5 sm:p-6 text-white shadow-xl">
       {/* Header Section with Back Button */}
-      <div className="mb-6 flex items-center justify-between border-b pb-4">
+      <div className="mb-4 sm:mb-6 flex items-center justify-between border-b border-gray-800 pb-3 sm:pb-4 gap-2">
         <div>
-          <h1 className="text-2xl font-bold text-white">
+          <h1 className="text-lg sm:text-2xl font-bold text-white">
             User Orders History
           </h1>
-          <p className="text-sm text-gray-300">
+          <p className="text-xs sm:text-sm text-gray-400">
             View details and items for this specific user
           </p>
         </div>
@@ -114,7 +111,7 @@ const ShowUserOrders = () => {
         <button
           type="button"
           onClick={() => navigate(-1)}
-          className="rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm transition hover:bg-gray-100 active:scale-95"
+          className="shrink-0 rounded-xl border border-gray-700 bg-gray-800 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium text-gray-200 transition hover:bg-gray-700 active:scale-95"
         >
           Go Back
         </button>
@@ -122,43 +119,45 @@ const ShowUserOrders = () => {
 
       {/* Main Content Area */}
       {loading ? (
-        <div className="py-10 text-center font-medium text-gray-600">
+        <div className="py-12 text-center text-xs sm:text-sm font-medium text-gray-400">
           Loading user orders...
         </div>
       ) : !userId ? (
-        <div className="py-10 text-center font-semibold text-red-500">
+        <div className="py-12 text-center text-xs sm:text-sm font-semibold text-red-400">
           User ID is missing or invalid.
         </div>
       ) : orders.length === 0 ? (
-        <div className="py-10 text-center text-gray-400">
+        <div className="py-12 text-center text-xs sm:text-sm text-gray-500">
           No orders found for this user.
         </div>
       ) : (
-        <div className="space-y-6">
-          <h2 className="text-xl font-bold text-gray-800">
+        <div className="space-y-4 sm:space-y-6">
+          <h2 className="text-sm sm:text-lg font-bold text-gray-300">
             Total Orders ({orders.length})
           </h2>
 
           {orders.map((order) => (
             <div
               key={order._id}
-              className="rounded-lg border border-gray-200 bg-gray-50 p-5 shadow-sm transition hover:shadow-md"
+              className="rounded-xl border border-gray-800 bg-gray-950 p-3.5 sm:p-5 shadow-sm transition hover:border-gray-700"
             >
               {/* Top Order Details */}
-              <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-gray-200 pb-3">
-                <div>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-gray-500">
+              <div className="mb-3 flex items-center justify-between gap-2 border-b border-gray-800/80 pb-2.5">
+                <div className="min-w-0">
+                  <span className="block text-[10px] font-semibold uppercase tracking-wider text-gray-500 sm:text-xs">
                     Order ID
                   </span>
-                  <p className="text-sm font-bold text-gray-800">{order._id}</p>
+                  <p className="text-xs sm:text-sm font-mono font-semibold text-gray-200 truncate">
+                    {order._id}
+                  </p>
                 </div>
 
                 {order.createdAt && (
-                  <div className="text-right">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-gray-500">
+                  <div className="text-right shrink-0">
+                    <span className="block text-[10px] font-semibold uppercase tracking-wider text-gray-500 sm:text-xs">
                       Order Date
                     </span>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-xs sm:text-sm text-gray-400">
                       {new Date(order.createdAt).toLocaleDateString()}
                     </p>
                   </div>
@@ -166,7 +165,7 @@ const ShowUserOrders = () => {
               </div>
 
               {/* Items List */}
-              <div className="divide-y divide-gray-200">
+              <div className="divide-y divide-gray-800/60">
                 {order.products?.map((item, index) => {
                   const product = item.productId || item.product || item;
                   const imageUrl = getImageUrl(product);
@@ -174,19 +173,18 @@ const ShowUserOrders = () => {
                   return (
                     <div
                       key={product?._id || item._id || index}
-                      className="flex items-center gap-4 py-3"
+                      className="flex items-center gap-3 py-2.5"
                     >
-                      {/* Image or Fallback Container */}
-                      <div className="h-16 w-16 flex-shrink-0">
+                      {/* Image Container */}
+                      <div className="h-14 w-14 sm:h-16 sm:w-16 shrink-0 relative">
                         {imageUrl ? (
                           <img
                             src={imageUrl}
                             alt={
                               product?.productName || product?.name || "Product"
                             }
-                            className="h-16 w-16 rounded-md border border-gray-200 object-cover shadow-sm"
+                            className="h-14 w-14 sm:h-16 sm:w-16 rounded-lg border border-gray-800 bg-gray-900 object-cover"
                             onError={(e) => {
-                              // Broken image ke liye visual fallback
                               e.target.style.display = "none";
                               if (e.target.nextSibling) {
                                 e.target.nextSibling.style.display = "flex";
@@ -198,26 +196,25 @@ const ShowUserOrders = () => {
                         {/* Fallback Box */}
                         <div
                           style={{ display: imageUrl ? "none" : "flex" }}
-                          className="h-16 w-16 items-center justify-center rounded-md border border-gray-200 bg-gray-200 text-center text-xs font-medium text-gray-400"
+                          className="h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-lg border border-gray-800 bg-gray-900 text-center text-[10px] font-medium text-gray-500"
                         >
                           No Image
                         </div>
                       </div>
 
                       {/* Product Details */}
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-gray-800">
+                      <div className="min-w-0 flex-1">
+                        <h4 className="text-xs sm:text-sm font-semibold text-gray-200 truncate">
                           {product?.productName ||
                             product?.name ||
                             "Product Name N/A"}
                         </h4>
-                        <p className="text-sm font-medium text-gray-600">
-                          Price: $
-                          {product?.productPrice ?? product?.price ?? "0"}
+                        <p className="text-xs sm:text-sm font-bold text-white mt-0.5">
+                          ₹{product?.productPrice ?? product?.price ?? "0"}
                         </p>
                         {item.quantity && (
-                          <p className="text-xs text-gray-500">
-                            Quantity: {item.quantity}
+                          <p className="text-[10px] sm:text-xs text-gray-400 mt-0.5">
+                            Qty: {item.quantity}
                           </p>
                         )}
                       </div>

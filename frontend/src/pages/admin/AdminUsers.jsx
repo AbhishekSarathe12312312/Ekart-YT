@@ -66,12 +66,12 @@ const AdminUsers = () => {
       </div>
 
       {/* Users Grid */}
-      <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {filteredUsers.map((user, index) => {
           return (
             <div
               key={index}
-              className="flex flex-col justify-between rounded-2xl border border-gray-800 bg-gray-900 p-6 shadow-lg transition hover:border-gray-700 hover:shadow-xl"
+              className="flex flex-col justify-between rounded border border-gray-800 bg-gray-900 p-6 shadow-lg transition hover:border-gray-700 hover:shadow-xl"
             >
               {/* User Profile Info */}
               <div className="flex items-center gap-4">

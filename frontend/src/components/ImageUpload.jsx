@@ -43,7 +43,7 @@ const ImageUpload = ({ productData, setProductData }) => {
       {/* Label */}
       <label
         htmlFor="file-upload"
-        className="block mb-2 text-sm font-semibold text-gray-700"
+        className="block mb-2 text-sm font-semibold text-gray-400"
       >
         Product Images
       </label>
@@ -61,7 +61,7 @@ const ImageUpload = ({ productData, setProductData }) => {
       {/* Upload Button */}
       <label
         htmlFor="file-upload"
-        className="inline-flex items-center justify-center px-5 py-2.5
+        className="inline-flex items-center justify-center px-2 py-1
                  border border-gray-300 rounded-lg
                  bg-gray-50 text-gray-700 font-medium
                  cursor-pointer

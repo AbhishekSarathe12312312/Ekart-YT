@@ -173,30 +173,30 @@ const AdminProduct = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gray-950 p-3 sm:p-6 text-white">
+    <div className="min-h-screen bg-gray-950 px-2 pb-20 text-white sm:p-6 sm:pb-6">
       {/* ================= SEARCH & SORT ================= */}
-      <div className="mb-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-        {/* Search */}
+      <div className="mb-4 flex flex-col gap-2.5 sm:mb-6 sm:flex-row sm:items-center sm:gap-3">
+        {/* Search Bar */}
         <div className="relative flex-1">
           <Search
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"
-            size={18}
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+            size={16}
           />
 
           <input
             type="text"
-            placeholder="Search Product..."
+            placeholder="Search product..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full rounded-xl border border-gray-700 bg-gray-900 py-2.5 pl-10 pr-4 text-sm text-white outline-none placeholder:text-gray-500 transition focus:border-gray-500 focus:ring-1 focus:ring-gray-600"
+            className="w-full rounded-xl border border-gray-800 bg-gray-900 py-2 pl-9 pr-3 text-xs text-white outline-none placeholder:text-gray-500 transition focus:border-gray-600 sm:text-sm"
           />
         </div>
 
-        {/* Sort */}
+        {/* Sort Dropdown */}
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value)}
-          className="rounded-xl border border-gray-700 bg-gray-900 px-4 py-2.5 text-sm text-gray-300 outline-none transition focus:border-gray-500 w-full sm:w-auto shrink-0"
+          className="shrink-0 rounded-xl border border-gray-800 bg-gray-900 px-3 py-2 text-xs text-gray-300 outline-none transition focus:border-gray-600 sm:text-sm"
         >
           <option value="" className="bg-gray-900">
             Sort by Price
@@ -212,46 +212,87 @@ const AdminProduct = () => {
         </select>
       </div>
 
-      {/* ================= PRODUCTS ================= */}
-      <div className="grid  gap-3 sm:gap-4">
+      {/* ================= PRODUCTS GRID ================= */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {sortedProducts.length > 0 ? (
           sortedProducts.map((product) => (
             <div
               key={product._id}
-              className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl  border border-gray-800 bg-gray-900 p-3 sm:p-4 shadow-lg transition hover:border-gray-700"
+              className="
+              flex
+              min-w-0
+              flex-col
+              rounded
+              border
+              border-gray-800/80
+              bg-gray-900
+              p-3
+              shadow-md
+              transition
+              hover:border-gray-700
+              sm:p-4
+            "
             >
-              {/* Product Information */}
-              <div className="flex items-start sm:items-center gap-3.5 sm:gap-5 min-w-0 flex-1">
+              {/* ================= TOP SECTION ================= */}
+              <div className="flex min-w-0 items-start gap-3">
+                {/* Product Image */}
                 <img
                   src={product.productImg?.[0]?.url || "/placeholder.png"}
                   alt={product.productName}
-                  className="h-16 w-16 sm:h-20 sm:w-20 shrink-0 rounded-xl border border-gray-700 object-cover"
+                  className="
+                  h-20
+                  w-20
+                  shrink-0
+                  rounded-lg
+                  border
+                  border-gray-800
+                  object-cover
+                  sm:h-24
+                  sm:w-24
+                "
                 />
 
+                {/* Product Information */}
                 <div className="min-w-0 flex-1">
-                  <h1 className="text-base sm:text-lg font-bold text-white truncate">
+                  {/* Brand */}
+                  <span className="block text-[10px] font-medium uppercase tracking-wider text-gray-500 sm:text-xs">
+                    {product.brand}
+                  </span>
+
+                  {/* Product Name - FULL NAME */}
+                  <h1 className="mt-1 break-words text-sm font-semibold leading-5 text-white sm:text-base">
                     {product.productName}
                   </h1>
 
-                  <p className="mt-0.5 sm:mt-1 font-semibold text-gray-200 text-sm sm:text-base">
+                  {/* Price */}
+                  <p className="mt-2 text-sm font-bold text-white sm:text-base">
                     ₹{product.productPrice}
-                  </p>
-
-                  <p className="mt-0.5 text-xs sm:text-sm text-gray-500 truncate">
-                    {product.brand}
                   </p>
                 </div>
               </div>
 
-              {/* Buttons */}
-              <div className="flex items-center gap-2.5 pt-3 sm:pt-0 border-t border-gray-800/80 sm:border-t-0 justify-end w-full sm:w-auto">
+              {/* ================= ACTION SECTION ================= */}
+              <div className="mt-4 flex items-center justify-end gap-2 border-t border-gray-800 pt-3">
                 {/* Edit */}
                 <button
                   type="button"
                   onClick={() => handleEdit(product)}
-                  className="flex-1 sm:flex-none justify-center flex items-center gap-1.5 rounded-xl border border-gray-700 bg-gray-800 px-3.5 py-2 text-xs sm:text-sm font-medium text-gray-300 transition hover:bg-gray-700 hover:text-white"
+                  className="
+                  rounded 
+                  border
+                  border-gray-800
+                  bg-gray-800/80
+                  px-6
+                  py-1.5
+                  text-[11px]
+                  font-medium
+                  text-gray-300
+                  transition
+                  hover:bg-gray-700
+                  hover:text-white
+                  sm:text-xs
+                "
                 >
-                  <Edit size={16} />
                   Edit
                 </button>
 
@@ -259,43 +300,75 @@ const AdminProduct = () => {
                 <button
                   type="button"
                   onClick={() => setDeleteProductId(product._id)}
-                  className="flex-1 sm:flex-none justify-center flex items-center gap-1.5 rounded-xl border border-red-900/60 bg-red-950/60 px-3.5 py-2 text-xs sm:text-sm font-medium text-red-400 transition hover:bg-red-900/80 hover:text-red-300"
+                  className="
+                  rounded
+                  border
+                  border-red-900/40
+                  bg-red-950/40
+                  px-6
+                  py-1.5
+                  text-[11px]
+                  font-medium
+                  text-red-400
+                  transition
+                  hover:bg-red-900/60
+                  sm:text-xs
+                "
                 >
-                  <Trash2 size={16} />
                   Delete
                 </button>
               </div>
             </div>
           ))
         ) : (
-          <div className="rounded-2xl border border-gray-800 bg-gray-900 py-12 text-center">
-            <p className="text-sm text-gray-500">No matching products found.</p>
+          <div className="col-span-full rounded-2xl border border-gray-800 bg-gray-900 py-12 text-center">
+            <p className="text-xs text-gray-500 sm:text-sm">
+              No matching products found.
+            </p>
           </div>
         )}
       </div>
 
       {/* ================= EDIT MODAL ================= */}
       {editProduct && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-3 sm:p-4 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/80 p-0 backdrop-blur-sm sm:items-center sm:p-4">
           <form
             onSubmit={handleSave}
-            className="flex max-h-[85vh] sm:max-h-[90vh] w-full max-w-md flex-col rounded-2xl border border-gray-700 bg-gray-900 text-white shadow-2xl"
+            className="
+            flex
+            max-h-[90vh]
+            w-full
+            max-w-md
+            flex-col
+            rounded-t-2xl
+            border
+            border-gray-800
+            bg-gray-900
+            text-white
+            shadow-2xl
+            animate-in
+            slide-in-from-bottom
+            duration-200
+            sm:max-h-[85vh]
+            sm:rounded
+          "
           >
             {/* Header */}
-            <div className="p-4 sm:p-6 pb-2 border-b border-gray-800 shrink-0">
-              <h1 className="text-lg sm:text-xl font-bold text-white">
+            <div className="shrink-0 border-b border-gray-800 p-4">
+              <h1 className="text-base font-bold text-white sm:text-lg">
                 Edit Product
               </h1>
-              <p className="text-xs sm:text-sm text-gray-400">
-                Make changes to your product details below.
+
+              <p className="text-xs text-gray-400">
+                Update item details below.
               </p>
             </div>
 
-            {/* Scrollable Form Body */}
-            <div className="space-y-4 overflow-y-auto p-4 sm:p-6">
+            {/* Body */}
+            <div className="space-y-3 overflow-y-auto p-4 text-xs sm:text-sm">
               {/* Product Name */}
               <div>
-                <label className="block text-xs sm:text-sm font-semibold text-gray-200">
+                <label className="block font-medium text-gray-300">
                   Product Name
                 </label>
 
@@ -304,46 +377,49 @@ const AdminProduct = () => {
                   name="productName"
                   value={editProduct.productName || ""}
                   onChange={handleChange}
-                  className="mt-1.5 w-full rounded-xl border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white outline-none placeholder:text-gray-500 focus:border-gray-500 focus:ring-1 focus:ring-gray-600"
+                  className="mt-1 w-full rounded-lg border border-gray-800 bg-gray-800 px-3 py-2 text-white outline-none focus:border-gray-600"
                   required
                 />
               </div>
 
-              {/* Price */}
-              <div>
-                <label className="block text-xs sm:text-sm font-semibold text-gray-200">
-                  Price
-                </label>
+              {/* Price + Brand */}
+              <div className="grid grid-cols-2 gap-3">
+                {/* Price */}
+                <div>
+                  <label className="block font-medium text-gray-300">
+                    Price (₹)
+                  </label>
 
-                <input
-                  type="number"
-                  name="productPrice"
-                  value={editProduct.productPrice || ""}
-                  onChange={handleChange}
-                  className="mt-1.5 w-full rounded-xl border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-600"
-                  required
-                />
-              </div>
+                  <input
+                    type="number"
+                    name="productPrice"
+                    value={editProduct.productPrice || ""}
+                    onChange={handleChange}
+                    className="mt-1 w-full rounded-lg border border-gray-800 bg-gray-800 px-3 py-2 text-white outline-none focus:border-gray-600"
+                    required
+                  />
+                </div>
 
-              {/* Brand */}
-              <div>
-                <label className="block text-xs sm:text-sm font-semibold text-gray-200">
-                  Brand
-                </label>
+                {/* Brand */}
+                <div>
+                  <label className="block font-medium text-gray-300">
+                    Brand
+                  </label>
 
-                <input
-                  type="text"
-                  name="brand"
-                  value={editProduct.brand || ""}
-                  onChange={handleChange}
-                  className="mt-1.5 w-full rounded-xl border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-600"
-                  required
-                />
+                  <input
+                    type="text"
+                    name="brand"
+                    value={editProduct.brand || ""}
+                    onChange={handleChange}
+                    className="mt-1 w-full rounded-lg border border-gray-800 bg-gray-800 px-3 py-2 text-white outline-none focus:border-gray-600"
+                    required
+                  />
+                </div>
               </div>
 
               {/* Category */}
               <div>
-                <label className="block text-xs sm:text-sm font-semibold text-gray-200">
+                <label className="block font-medium text-gray-300">
                   Category
                 </label>
 
@@ -352,14 +428,14 @@ const AdminProduct = () => {
                   name="category"
                   value={editProduct.category || ""}
                   onChange={handleChange}
-                  className="mt-1.5 w-full rounded-xl border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-600"
+                  className="mt-1 w-full rounded-lg border border-gray-800 bg-gray-800 px-3 py-2 text-white outline-none focus:border-gray-600"
                   required
                 />
               </div>
 
               {/* Description */}
               <div>
-                <label className="block text-xs sm:text-sm font-semibold text-gray-200">
+                <label className="block font-medium text-gray-300">
                   Description
                 </label>
 
@@ -367,7 +443,8 @@ const AdminProduct = () => {
                   name="productDesc"
                   value={editProduct.productDesc || ""}
                   onChange={handleChange}
-                  className="mt-1.5 h-20 sm:h-24 w-full resize-none rounded-xl border border-gray-700 bg-gray-800 p-3 text-sm text-white outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-600"
+                  rows={2}
+                  className="mt-1 w-full resize-none rounded-lg border border-gray-800 bg-gray-800 p-2.5 text-white outline-none focus:border-gray-600"
                 />
               </div>
 
@@ -378,22 +455,24 @@ const AdminProduct = () => {
               />
             </div>
 
-            {/* Fixed Footer Buttons */}
-            <div className="flex justify-end gap-3 border-t border-gray-800 p-4 shrink-0 bg-gray-900/90 rounded-b-2xl">
+            {/* Footer */}
+            <div className="flex shrink-0 justify-end gap-2 border-t border-gray-800 bg-gray-900 p-3">
+              {/* Cancel */}
               <button
                 type="button"
                 onClick={() => setEditProduct(null)}
-                className="flex-1 sm:flex-none rounded-xl border border-gray-700 bg-gray-800 px-4 py-2 text-xs sm:text-sm font-medium text-gray-300 transition hover:bg-gray-700 hover:text-white"
+                className="flex-1 rounded-lg border border-gray-800 bg-gray-800 px-3.5 py-2 text-xs font-medium text-gray-300 transition hover:bg-gray-700 sm:flex-none"
               >
                 Cancel
               </button>
 
+              {/* Save */}
               <button
                 type="submit"
                 disabled={loading}
-                className="flex-1 sm:flex-none rounded-xl bg-white px-4 py-2 text-xs sm:text-sm font-bold text-black transition hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex-1 rounded-lg bg-white px-3.5 py-2 text-xs font-bold text-black transition hover:bg-gray-200 disabled:opacity-50 sm:flex-none"
               >
-                {loading ? "Saving..." : "Save Changes"}
+                {loading ? "Saving..." : "Save"}
               </button>
             </div>
           </form>
@@ -402,34 +481,38 @@ const AdminProduct = () => {
 
       {/* ================= DELETE CONFIRMATION MODAL ================= */}
       {deleteProductId && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm">
-          <div className="w-full max-w-sm rounded-2xl border border-gray-700 bg-gray-900 p-5 sm:p-6 text-white shadow-2xl">
-            <h2 className="mb-2 text-lg sm:text-xl font-bold text-white">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-xs rounded-2xl border border-gray-800 bg-gray-900 p-4 text-white shadow-2xl">
+            {/* Title */}
+            <h2 className="mb-1 text-base font-bold text-white">
               Delete Product?
             </h2>
 
-            <p className="mb-6 text-xs sm:text-sm leading-relaxed text-gray-400">
-              Are you sure you want to delete this product? This action cannot
-              be undone.
+            {/* Message */}
+            <p className="mb-4 text-xs leading-relaxed text-gray-400">
+              Are you sure? This action cannot be undone.
             </p>
 
-            <div className="flex justify-end gap-3">
+            {/* Buttons */}
+            <div className="flex gap-2">
+              {/* Cancel */}
               <button
                 type="button"
                 onClick={() => setDeleteProductId(null)}
                 disabled={loading}
-                className="flex-1 sm:flex-none justify-center rounded-xl border border-gray-700 bg-gray-800 px-4 py-2 text-xs sm:text-sm font-medium text-gray-300 transition hover:bg-gray-700 hover:text-white disabled:opacity-50"
+                className="flex-1 rounded-lg border border-gray-800 bg-gray-800 py-2 text-xs font-medium text-gray-300"
               >
                 Cancel
               </button>
 
+              {/* Delete */}
               <button
                 type="button"
                 onClick={() => deleteProductHandler(deleteProductId)}
                 disabled={loading}
-                className="flex-1 sm:flex-none justify-center rounded-xl bg-red-600 px-4 py-2 text-xs sm:text-sm font-semibold text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex-1 rounded-lg bg-red-600 py-2 text-xs font-semibold text-white disabled:opacity-50"
               >
-                {loading ? "Deleting..." : "Yes, Delete"}
+                {loading ? "Deleting..." : "Delete"}
               </button>
             </div>
           </div>

@@ -39,7 +39,15 @@ const App = () => {
           }
         />
 
-        <Route path="/signup" element={<Signup />} />
+        <Route
+          path="/signup"
+          element={
+            <>
+              <Navbar />
+              <Signup />
+            </>
+          }
+        />
         <Route
           path="/login"
           element={
@@ -52,6 +60,7 @@ const App = () => {
           path="/forgot-password"
           element={
             <>
+              <Navbar />
               <ForgotPassword />
             </>
           }

@@ -51,10 +51,10 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 w-full border-b border-gray-800/80 bg-gray-950/95 px-4 py-3 shadow-xl backdrop-blur-3xl md:px-6">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
+      <nav className="sticky top-0 z-50 w-full border-b border-gray-800/80 bg-gray-950/95 px-3 py-2.5 shadow-xl backdrop-blur-3xl sm:px-4 md:px-6">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 sm:gap-4">
           {/* Mobile Hamburger + Logo */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             {/* Mobile Hamburger Icon */}
             <button
               onClick={toggleSidebar}
@@ -77,15 +77,15 @@ const Navbar = () => {
               </svg>
             </button>
 
-            {/* Logo */}
+            {/* Logo (Sized dynamically for mobile & desktop) */}
             <Link
               to="/"
-              className="group shrink-0 transition-transform duration-300 hover:scale-105 active:scale-95"
+              className="group flex shrink-0 items-center transition-transform duration-300 hover:scale-105 active:scale-95"
             >
               <img
                 src="/Ekart.png"
                 alt="Ekart Logo"
-                className="h-10 w-auto object-contain drop-shadow-md transition duration-300 group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.25)]"
+                className="h-10 pt-2 w-auto object-contain drop-shadow-md transition duration-300  group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.25)]"
               />
             </Link>
           </div>
@@ -215,17 +215,21 @@ const Navbar = () => {
 
       {/* Mobile Sidebar */}
       <aside
-        className={`fixed top-0 left-0 z-50 flex h-full w-72 flex-col justify-between border-r border-gray-800 bg-gray-950 p-5 shadow-2xl transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed top-0 left-0 z-50 flex h-full w-72 flex-col justify-between border-r border-gray-800 bg-gray-850 p-5 shadow-2xl transition-transform duration-300 ease-in-out md:hidden ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         <div>
           {/* Top Bar inside Sidebar */}
-          <div className="flex items-center justify-between border-b border-gray-800 pb-4">
-            <img src="/Ekart.png" alt="Ekart Logo" className="h-8 w-auto" />
+          <div className="flex items-center justify-between border-b border-gray-800 pb-2">
+            <img
+              src="/Ekart.png"
+              alt="Ekart Logo"
+              className="h-9 mt-1 pt-2 w-auto object-contain"
+            />
             <button
               onClick={toggleSidebar}
-              className="rounded-lg p-1 text-gray-400 hover:bg-gray-800 hover:text-white"
+              className="rounded-lg p-1.5 text-gray-400 hover:bg-gray-800 hover:text-white"
             >
               ✕
             </button>
@@ -284,23 +288,11 @@ const Navbar = () => {
               My Orders
             </Link>
 
-            {/* Cart Link in Mobile Sidebar */}
-            <Link
-              to="/cart"
-              onClick={toggleSidebar}
-              className="flex items-center justify-between rounded-xl px-4 py-2.5 text-sm font-medium text-gray-300 hover:bg-gray-800 hover:text-white"
-            >
-              <span>Cart</span>
-              <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-white px-1.5 text-[10px] font-bold text-black">
-                {cart?.items?.length || 0}
-              </span>
-            </Link>
-
             {admin && (
               <Link
                 to="/dashboard/sales"
                 onClick={toggleSidebar}
-                className="mt-2 rounded-xl bg-white px-4 py-2.5 text-center text-sm font-bold text-black hover:bg-gray-200"
+                className="rounded-xl px-4 py-2.5 text-sm font-medium text-gray-300 hover:bg-gray-800 hover:text-white"
               >
                 Dashboard
               </Link>

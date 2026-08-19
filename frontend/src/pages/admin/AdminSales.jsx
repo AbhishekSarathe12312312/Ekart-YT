@@ -115,16 +115,16 @@ const AdminSales = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-950 p-3 sm:p-4 md:p-6 text-white">
-      <div className="mx-auto max-w-7xl space-y-5 sm:space-y-7">
+    <div className="min-h-screen bg-gray-950  sm:p-4 md:p-6 text-white">
+      <div className="mx-auto max-w-7xl space-y-3 sm:space-y-7">
         {/* Header */}
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex border-1 border-white-800 rounded-xl p-2 gap-5 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="mb-1 text-xs font-semibold uppercase tracking-[0.2em] text-blue-400">
               Analytics
             </p>
 
-            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+            <h1 className="text-xl sm:text-3xl font-bold tracking-tight text-white">
               Sales Dashboard
             </h1>
 
@@ -133,9 +133,9 @@ const AdminSales = () => {
             </p>
           </div>
 
-          <div className="self-start sm:self-auto flex items-center gap-2 rounded-xl border border-gray-800 bg-gray-900 px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm text-gray-400">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-green-400" />
-            Live Data
+          <div className=" auto flex items-center gap-2 rounded-lg border border-gray-800 bg-gray-900 px-5 h-7 mt-20 text-xs text-gray-300 mt-3 w-fit">
+            <span className="h-2 w-2 animate-pulse rounded-full bg-green-400 shrink-0" />
+            <span className="font-medium  leading-none ">Live Data</span>
           </div>
         </div>
 

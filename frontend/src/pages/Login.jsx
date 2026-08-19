@@ -28,15 +28,11 @@ const Login = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await API.post(
-        `/api/v1/user/login`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
+      const res = await API.post(`/api/v1/user/login`, formData, {
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+      });
       if (res.data.success) {
         navigate("/");
         dispatch(setUser(res.data.user));
@@ -53,29 +49,42 @@ const Login = () => {
 
   return (
     <div
-      className="relative flex min-h-fit w-full items-center justify-center overflow-hidden bg-cover bg-[center_top_20%] bg-no-repeat px-4"
+      className="fixed inset-0 flex items-center justify-center overflow-hidden bg-cover bg-[center_10%] bg-no-repeat px-4"
       style={{
         backgroundImage: "url('/ecommerce-login-bg.png')",
       }}
     >
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 backdrop:blur-2xl bg-black/45"></div>
+      {/* Dark Overlay - No Blur */}
+      <div className="absolute inset-0 bg-black/45"></div>
 
       {/* Login Card */}
-      <div className="relative mt-14 mb-14 z-10 w-full max-w-sm rounded-[24px] border border-gray-700/80 bg-transparent p-10 shadow-2xl backdrop-blur-md">
+      <div
+        className="
+        relative z-10 w-full max-w-sm mt-13
+        rounded
+        border border-gray-700/80
+        bg-black/20
+        p-4
+        shadow-2xl
+        backdrop-blur-md
+
+        sm:p-8
+        lg:p-10
+      "
+      >
         <form onSubmit={submitHandler}>
           <div>
             {/* Header */}
-            <h2 className="text-xl font-bold text-white">
+            <h2 className="text-lg font-bold text-white sm:text-xl">
               Login to your account
             </h2>
 
-            <p className="mt-1 text-sm text-gray-400">
+            <p className="mt-1 text-xs leading-5 text-gray-400 sm:text-sm">
               Enter your email below to login to your account
             </p>
 
-            {/* Email Field */}
-            <div className="mt-6">
+            {/* Email */}
+            <div className="mt-5 sm:mt-6">
               <label
                 htmlFor="email"
                 className="block text-sm font-semibold text-gray-200"
@@ -96,7 +105,7 @@ const Login = () => {
             </div>
 
             {/* Password Header */}
-            <div className="mt-5 flex items-center justify-between">
+            <div className="mt-5 flex items-center justify-between gap-2">
               <label
                 htmlFor="password"
                 className="block text-sm font-semibold text-gray-200"
@@ -104,19 +113,22 @@ const Login = () => {
                 Password
               </label>
 
-              <Link to='/forgot-password' className="cursor-pointer text-xs text-gray-400 hover:text-white hover:underline">
+              <Link
+                to="/forgot-password"
+                className="whitespace-nowrap text-[11px] text-gray-400 hover:text-white hover:underline sm:text-xs"
+              >
                 Forgot your password?
               </Link>
             </div>
 
-            {/* Password Input */}
+            {/* Password */}
             <div className="relative mt-2">
               <input
                 id="password"
                 name="password"
                 value={formData.password}
                 type={showPassword ? "text" : "password"}
-                placeholder="Create a password"
+                placeholder="Enter your password"
                 required
                 onChange={handleChange}
                 className="w-full rounded-xl border border-gray-700 bg-gray-800/90 px-3 py-2.5 pr-10 text-sm text-white outline-none placeholder:text-gray-500 transition focus:border-gray-500 focus:ring-1 focus:ring-gray-600"
@@ -125,17 +137,17 @@ const Login = () => {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 transition hover:text-white"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
               >
                 {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
               </button>
             </div>
 
-            {/* Login Button */}
+            {/* Login */}
             <button
               type="submit"
               disabled={loading}
-              className="mt-6 flex cursor-pointer w-full items-center justify-center rounded-xl bg-white py-2.5 text-sm font-bold text-black shadow-sm transition hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-70"
+              className="mt-5 flex w-full cursor-pointer items-center justify-center rounded-xl bg-white py-2.5 text-sm font-bold text-black shadow-sm transition hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-70 sm:mt-6"
             >
               {loading ? (
                 <Loader2 size={18} className="animate-spin" />
@@ -144,7 +156,7 @@ const Login = () => {
               )}
             </button>
 
-            {/* Signup Link */}
+            {/* Signup */}
             <p className="mt-4 text-center text-xs text-gray-400">
               Don't have an account?{" "}
               <Link

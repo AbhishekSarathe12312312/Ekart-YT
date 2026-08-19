@@ -166,21 +166,21 @@ const AddressForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 px-3 py-6 sm:px-4 lg:px-6">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-6 lg:grid-cols-3">
+    <div className="min-h-screen bg-gray-950 px-3 py-4 sm:px-4 lg:px-6">
+      <div className="mx-auto grid max-w-5xl grid-cols-1 items-start gap-4 lg:grid-cols-3">
         {/* LEFT SIDE - ADDRESS MANAGEMENT */}
-        <div className="rounded-xl border border-gray-800 bg-gray-900 p-5 shadow-xl lg:col-span-2">
+        <div className="rounded-lg border border-gray-800 bg-gray-900 p-3.5 sm:p-4 shadow-lg lg:col-span-2">
           {showForm ? (
             <form onSubmit={handleSave}>
-              <h2 className="mb-5 border-b border-gray-800 pb-3 text-lg font-bold text-white">
+              <h2 className="mb-3 border-b border-gray-800 pb-2 text-base font-semibold text-white">
                 Shipping Information
               </h2>
 
-              <div className="mb-5 grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div className="mb-4 grid grid-cols-1 gap-2.5 md:grid-cols-2">
                 <div>
                   <label
                     htmlFor="fullName"
-                    className="mb-1.5 block text-xs font-semibold text-gray-300"
+                    className="mb-1 block text-[11px] font-medium text-gray-300"
                   >
                     Full Name
                   </label>
@@ -192,14 +192,14 @@ const AddressForm = () => {
                     placeholder="John Doe"
                     value={formData.fullName}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white outline-none placeholder:text-gray-500 focus:border-blue-500"
+                    className="w-full rounded-md border border-gray-700 bg-gray-800 px-2.5 py-1.5 text-xs text-white outline-none placeholder:text-gray-500 focus:border-blue-500"
                   />
                 </div>
 
                 <div>
                   <label
                     htmlFor="phone"
-                    className="mb-1.5 block text-xs font-semibold text-gray-300"
+                    className="mb-1 block text-[11px] font-medium text-gray-300"
                   >
                     Phone Number
                   </label>
@@ -211,14 +211,14 @@ const AddressForm = () => {
                     placeholder="+91 9543526475"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white outline-none placeholder:text-gray-500 focus:border-blue-500"
+                    className="w-full rounded-md border border-gray-700 bg-gray-800 px-2.5 py-1.5 text-xs text-white outline-none placeholder:text-gray-500 focus:border-blue-500"
                   />
                 </div>
 
                 <div className="md:col-span-2">
                   <label
                     htmlFor="email"
-                    className="mb-1.5 block text-xs font-semibold text-gray-300"
+                    className="mb-1 block text-[11px] font-medium text-gray-300"
                   >
                     Email
                   </label>
@@ -230,14 +230,14 @@ const AddressForm = () => {
                     placeholder="john@example.com"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white outline-none placeholder:text-gray-500 focus:border-blue-500"
+                    className="w-full rounded-md border border-gray-700 bg-gray-800 px-2.5 py-1.5 text-xs text-white outline-none placeholder:text-gray-500 focus:border-blue-500"
                   />
                 </div>
 
                 <div className="md:col-span-2">
                   <label
                     htmlFor="address"
-                    className="mb-1.5 block text-xs font-semibold text-gray-300"
+                    className="mb-1 block text-[11px] font-medium text-gray-300"
                   >
                     Address
                   </label>
@@ -249,14 +249,14 @@ const AddressForm = () => {
                     placeholder="123 Street area"
                     value={formData.address}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white outline-none placeholder:text-gray-500 focus:border-blue-500"
+                    className="w-full rounded-md border border-gray-700 bg-gray-800 px-2.5 py-1.5 text-xs text-white outline-none placeholder:text-gray-500 focus:border-blue-500"
                   />
                 </div>
 
                 <div>
                   <label
                     htmlFor="city"
-                    className="mb-1.5 block text-xs font-semibold text-gray-300"
+                    className="mb-1 block text-[11px] font-medium text-gray-300"
                   >
                     City
                   </label>
@@ -268,14 +268,14 @@ const AddressForm = () => {
                     placeholder="Kolkata"
                     value={formData.city}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white outline-none placeholder:text-gray-500 focus:border-blue-500"
+                    className="w-full rounded-md border border-gray-700 bg-gray-800 px-2.5 py-1.5 text-xs text-white outline-none placeholder:text-gray-500 focus:border-blue-500"
                   />
                 </div>
 
                 <div>
                   <label
                     htmlFor="state"
-                    className="mb-1.5 block text-xs font-semibold text-gray-300"
+                    className="mb-1 block text-[11px] font-medium text-gray-300"
                   >
                     State
                   </label>
@@ -287,14 +287,14 @@ const AddressForm = () => {
                     placeholder="West Bengal"
                     value={formData.state}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white outline-none placeholder:text-gray-500 focus:border-blue-500"
+                    className="w-full rounded-md border border-gray-700 bg-gray-800 px-2.5 py-1.5 text-xs text-white outline-none placeholder:text-gray-500 focus:border-blue-500"
                   />
                 </div>
 
                 <div>
                   <label
                     htmlFor="zip"
-                    className="mb-1.5 block text-xs font-semibold text-gray-300"
+                    className="mb-1 block text-[11px] font-medium text-gray-300"
                   >
                     Zip Code
                   </label>
@@ -306,14 +306,14 @@ const AddressForm = () => {
                     placeholder="700101"
                     value={formData.zip}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white outline-none placeholder:text-gray-500 focus:border-blue-500"
+                    className="w-full rounded-md border border-gray-700 bg-gray-800 px-2.5 py-1.5 text-xs text-white outline-none placeholder:text-gray-500 focus:border-blue-500"
                   />
                 </div>
 
                 <div>
                   <label
                     htmlFor="country"
-                    className="mb-1.5 block text-xs font-semibold text-gray-300"
+                    className="mb-1 block text-[11px] font-medium text-gray-300"
                   >
                     Country
                   </label>
@@ -325,15 +325,15 @@ const AddressForm = () => {
                     placeholder="India"
                     value={formData.country}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white outline-none placeholder:text-gray-500 focus:border-blue-500"
+                    className="w-full rounded-md border border-gray-700 bg-gray-800 px-2.5 py-1.5 text-xs text-white outline-none placeholder:text-gray-500 focus:border-blue-500"
                   />
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2.5">
                 <button
                   type="submit"
-                  className="rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/20 hover:bg-blue-700 active:scale-[0.98]"
+                  className="rounded-md bg-blue-600 px-4 py-2 text-xs font-semibold text-white shadow-md hover:bg-blue-700 active:scale-[0.98]"
                 >
                   Save & Continue
                 </button>
@@ -341,7 +341,7 @@ const AddressForm = () => {
                   <button
                     type="button"
                     onClick={() => setShowForm(false)}
-                    className="rounded-lg border border-gray-700 px-4 py-2.5 text-sm text-gray-400 hover:bg-gray-800"
+                    className="rounded-md border border-gray-700 px-3 py-2 text-xs text-gray-400 hover:bg-gray-800"
                   >
                     Cancel
                   </button>
@@ -350,19 +350,19 @@ const AddressForm = () => {
             </form>
           ) : (
             <div>
-              <div className="mb-5 flex items-center justify-between border-b border-gray-800 pb-3">
-                <h2 className="text-lg font-bold text-white">
+              <div className="mb-3 flex items-center justify-between border-b border-gray-800 pb-2">
+                <h2 className="text-base font-semibold text-white">
                   Saved Addresses
                 </h2>
                 <button
                   onClick={() => setShowForm(true)}
-                  className="rounded-lg border border-blue-500/30 bg-blue-500/10 px-3 py-1.5 text-xs font-semibold text-blue-400 hover:bg-blue-500/20"
+                  className="rounded-md border border-blue-500/30 bg-blue-500/10 px-2.5 py-1 text-[11px] font-semibold text-blue-400 hover:bg-blue-500/20"
                 >
                   + Add Address
                 </button>
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 {addresses.map((addr, index) => {
                   const isSelected = selectedAddress === index;
 
@@ -370,25 +370,25 @@ const AddressForm = () => {
                     <div
                       key={index}
                       onClick={() => dispatch(setSelectedAddress(index))}
-                      className={`relative cursor-pointer rounded-lg border p-4 transition ${
+                      className={`relative cursor-pointer rounded-md border p-3 transition ${
                         isSelected
                           ? "border-blue-500 bg-blue-500/5 ring-1 ring-blue-500"
                           : "border-gray-800 bg-gray-950 hover:border-gray-700"
                       }`}
                     >
-                      <div className="mb-2 flex items-start justify-between">
+                      <div className="mb-1 flex items-start justify-between">
                         <div>
                           <div className="flex items-center gap-2">
-                            <p className="text-sm font-bold text-white">
+                            <p className="text-xs font-bold text-white">
                               {addr.fullName}
                             </p>
                             {isSelected && (
-                              <span className="rounded-full bg-blue-600 px-2 py-0.5 text-[9px] font-bold text-white">
+                              <span className="rounded-full bg-blue-600 px-1.5 py-0.5 text-[8px] font-bold uppercase text-white">
                                 Selected
                               </span>
                             )}
                           </div>
-                          <p className="mt-1 text-xs text-gray-500">
+                          <p className="mt-0.5 text-[11px] text-gray-500">
                             {addr.phone} | {addr.email}
                           </p>
                         </div>
@@ -401,13 +401,13 @@ const AddressForm = () => {
                               dispatch(setSelectedAddress(null));
                             }
                           }}
-                          className="rounded-md px-2 py-1 text-xs font-semibold text-red-400 hover:bg-red-500/10 hover:text-red-300"
+                          className="rounded px-1.5 py-0.5 text-[11px] font-medium text-red-400 hover:bg-red-500/10 hover:text-red-300"
                         >
                           Delete
                         </button>
                       </div>
 
-                      <p className="pr-8 text-sm leading-relaxed text-gray-400">
+                      <p className="pr-6 text-xs leading-relaxed text-gray-400">
                         {addr.address}, {addr.city}, {addr.state}, {addr.zip},{" "}
                         {addr.country}
                       </p>
@@ -416,14 +416,14 @@ const AddressForm = () => {
                 })}
               </div>
 
-              <div className="mt-5 border-t border-gray-800 pt-4">
+              <div className="mt-4 border-t border-gray-800 pt-3">
                 <button
                   disabled={selectedAddress === null || loading}
                   onClick={handlePayment}
-                  className={`w-full rounded-lg py-3 text-sm font-semibold transition active:scale-[0.99] ${
+                  className={`w-full rounded-md py-2 text-xs font-semibold transition active:scale-[0.99] ${
                     selectedAddress === null || loading
                       ? "cursor-not-allowed border border-gray-800 bg-gray-800 text-gray-600"
-                      : "bg-blue-600 text-white shadow-lg shadow-blue-600/20 hover:bg-blue-700"
+                      : "bg-blue-600 text-white shadow-md shadow-blue-600/20 hover:bg-blue-700"
                   }`}
                 >
                   {loading ? "Processing..." : "Proceed To Checkout"}
@@ -434,12 +434,12 @@ const AddressForm = () => {
         </div>
 
         {/* RIGHT SIDE - ORDER SUMMARY */}
-        <div className="rounded-xl border border-gray-800 bg-gray-900 p-5 shadow-xl">
-          <h1 className="mb-5 border-b border-gray-800 pb-3 text-lg font-bold text-white">
+        <div className="rounded-lg border border-gray-800 bg-gray-900 p-3.5 sm:p-4 shadow-lg">
+          <h1 className="mb-3 border-b border-gray-800 pb-2 text-base font-semibold text-white">
             Order Summary
           </h1>
 
-          <div className="space-y-3 text-sm">
+          <div className="space-y-2 text-xs">
             <div className="flex items-center justify-between">
               <span className="text-gray-400">
                 Subtotal ({cart?.items?.length || 0} items)
@@ -463,23 +463,23 @@ const AddressForm = () => {
               </span>
             </div>
 
-            <div className="flex items-center justify-between border-t border-gray-800 pt-4">
+            <div className="flex items-center justify-between border-t border-gray-800 pt-3 text-sm">
               <span className="font-bold text-white">Total</span>
-              <span className="text-lg font-extrabold text-blue-400">
+              <span className="font-extrabold text-blue-400">
                 ₹{total.toFixed(2)}
               </span>
             </div>
           </div>
 
-          <div className="mt-5 space-y-2 rounded-lg border border-green-500/20 bg-green-500/5 p-3 text-xs text-green-400">
-            <p className="flex items-center gap-2">
+          <div className="mt-4 space-y-1.5 rounded-md border border-green-500/20 bg-green-500/5 p-2.5 text-[11px] text-green-400">
+            <p className="flex items-center gap-1.5">
               <span className="font-bold">✓</span> Free shipping on orders over
               ₹50
             </p>
-            <p className="flex items-center gap-2">
+            <p className="flex items-center gap-1.5">
               <span className="font-bold">✓</span> 30-day return policy
             </p>
-            <p className="flex items-center gap-2">
+            <p className="flex items-center gap-1.5">
               <span className="font-bold">✓</span> Secure checkout with SSL
               encryption
             </p>
