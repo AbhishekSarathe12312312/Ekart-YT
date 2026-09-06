@@ -58,7 +58,7 @@ const Profile = () => {
       if (file) {
         formData.append("file", file); // image file for backend multer
       }
-      const res = await axios.put(
+      const res = await API.put(
         `https://ekart-yt.onrender.com/api/v1/user/update/${userId}`,
         formData,
         {
