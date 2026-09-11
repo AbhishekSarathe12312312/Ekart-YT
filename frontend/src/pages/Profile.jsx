@@ -79,7 +79,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="relative mx-auto max-w-xl max-h-fit mb-8 mt-8  rounded-2xl border bg-gray-900 p-5 text-white shadow-xl">
+    <div className="relative mx-auto max-w-xl max-h-fit mb-8 mt-8  rounded border bg-gray-900 p-5 text-white shadow-xl">
       {/* Profile Header & View Orders Button */}
       <div className="mb-6 flex items-center justify-between border-b border-gray-800 pb-4">
         <div>
