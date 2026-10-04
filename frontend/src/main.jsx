@@ -9,6 +9,16 @@ import { Provider } from "react-redux";
 // Import both store and persistor from your Redux configuration file
 import { store, persistor } from "./redux/store.js";
 import { PersistGate } from "redux-persist/integration/react";
+import Lenis from "lenis";
+
+const lenis = new Lenis();
+
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

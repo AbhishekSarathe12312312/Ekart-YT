@@ -173,21 +173,21 @@ const Products = () => {
     { value: "50000+", label: "₹50,000+" },
   ];
 
-  return (
-    <div className="min-h-screen bg-gray-950 pb-12 text-white">
-      <div className="mx-auto max-w-[1536px] px-3 py-4 sm:px-5 lg:px-7">
+ return (
+    <div className="min-h-screen bg-[#090d16] pb-16 text-white selection:bg-blue-500 selection:text-white">
+      <div className="mx-auto max-w-[1536px] px-4 py-6 sm:px-6 lg:px-8">
+        
         {/* =========================
-            HEADER
+            HEADER SECTION
         ========================= */}
-        <div className="mb-4 flex flex-col gap-3">
+        <div className="mb-6 flex flex-col gap-4">
           <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-lg font-bold tracking-tight sm:text-xl">
+            <div className="space-y-1">
+              <h1 className="text-xl font-extrabold tracking-tight sm:text-2xl bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
                 All Products
               </h1>
-
-              <p className="mt-0.5 text-[11px] text-gray-500">
-                Explore our latest products
+              <p className="text-xs text-gray-400 font-medium">
+                Explore our latest collection of premium products
               </p>
             </div>
 
@@ -195,23 +195,22 @@ const Products = () => {
             <button
               type="button"
               onClick={() => setShowFilters((prev) => !prev)}
-              className="flex items-center gap-1.5 rounded-lg border border-gray-800 bg-gray-900 px-3 py-2 text-xs text-gray-300 transition-all duration-200 hover:border-gray-700 hover:bg-gray-800 sm:hidden"
+              className="flex items-center gap-2 rounded-xl border border-gray-800 bg-gray-900/90 px-3.5 py-2 text-xs font-medium text-gray-200 shadow-sm backdrop-blur-md transition-all duration-200 hover:border-gray-700 hover:bg-gray-800 sm:hidden active:scale-95"
             >
-              <SlidersHorizontal size={14} />
-
+              <SlidersHorizontal size={14} className="text-blue-400" />
               <span>Filters</span>
             </button>
           </div>
 
           {/* =========================
-              SEARCH + SORT
+              SEARCH + SORT BAR
           ========================= */}
-          <div className="flex flex-col gap-2 sm:flex-row">
-            {/* SEARCH */}
-            <div className="relative flex-1">
+          <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center">
+            {/* SEARCH INPUT */}
+            <div className="relative flex-1 group">
               <Search
                 size={16}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 transition-colors group-focus-within:text-blue-400"
               />
 
               <input
@@ -219,14 +218,14 @@ const Products = () => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search products..."
-                className="h-9 w-full rounded-lg border border-gray-800 bg-gray-900 pl-9 pr-9 text-xs text-white outline-none transition-all duration-200 placeholder:text-gray-600 focus:border-gray-700"
+                className="h-11 w-full rounded-xl border border-gray-800/80 bg-gray-900/80 pl-10 pr-10 text-xs text-white outline-none backdrop-blur-sm transition-all duration-200 placeholder:text-gray-500 focus:border-blue-500/50 focus:bg-gray-900 focus:ring-4 focus:ring-blue-500/10"
               />
 
               {search && (
                 <button
                   type="button"
                   onClick={() => setSearch("")}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-500 transition hover:text-white"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-gray-400 transition hover:bg-gray-800 hover:text-white"
                 >
                   <X size={14} />
                 </button>
@@ -234,25 +233,25 @@ const Products = () => {
             </div>
 
             {/* DESKTOP SORT */}
-            <div className="relative hidden sm:block sm:w-44">
+            <div className="relative hidden sm:block sm:w-48">
               <ArrowUpDown
                 size={14}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
               />
 
               <select
                 value={sortOrder}
                 onChange={(e) => setSortOrder(e.target.value)}
-                className="h-9 w-full appearance-none rounded-lg border border-gray-800 bg-gray-900 pl-9 pr-8 text-xs text-gray-300 outline-none transition focus:border-gray-700"
+                className="h-11 w-full appearance-none rounded-xl border border-gray-800/80 bg-gray-900/80 pl-10 pr-9 text-xs font-medium text-gray-300 outline-none backdrop-blur-sm transition-all duration-200 focus:border-blue-500/50 focus:bg-gray-900 focus:ring-4 focus:ring-blue-500/10"
               >
-                <option value="">Sort Products</option>
-                <option value="lowToHigh">Price: Low to High</option>
-                <option value="highToLow">Price: High to Low</option>
+                <option value="" className="bg-gray-900 text-gray-400">Sort Products</option>
+                <option value="lowToHigh" className="bg-gray-900">Price: Low to High</option>
+                <option value="highToLow" className="bg-gray-900">Price: High to Low</option>
               </select>
 
               <ChevronDown
                 size={14}
-                className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+                className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400"
               />
             </div>
 
@@ -261,16 +260,16 @@ const Products = () => {
               <select
                 value={sortOrder}
                 onChange={(e) => setSortOrder(e.target.value)}
-                className="h-9 w-full appearance-none rounded-lg border border-gray-800 bg-gray-900 px-3 pr-8 text-xs text-gray-300 outline-none"
+                className="h-11 w-full appearance-none rounded-xl border border-gray-800/80 bg-gray-900/80 px-4 pr-9 text-xs font-medium text-gray-300 outline-none"
               >
-                <option value="">Sort Products</option>
-                <option value="lowToHigh">Price: Low to High</option>
-                <option value="highToLow">Price: High to Low</option>
+                <option value="" className="bg-gray-900 text-gray-400">Sort Products</option>
+                <option value="lowToHigh" className="bg-gray-900">Price: Low to High</option>
+                <option value="highToLow" className="bg-gray-900">Price: High to Low</option>
               </select>
 
               <ChevronDown
                 size={14}
-                className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+                className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400"
               />
             </div>
           </div>
@@ -280,16 +279,15 @@ const Products = () => {
             FILTER PANEL
         ========================= */}
         <div
-          className={`mb-4 rounded-xl border border-gray-800 bg-gray-900/70 p-3 transition-all duration-300 sm:block ${
-            showFilters ? "block" : "hidden"
+          className={`mb-6 overflow-hidden rounded-2xl border border-gray-800/80 bg-gray-900/40 p-4 backdrop-blur-xl transition-all duration-300 sm:block ${
+            showFilters ? "block shadow-xl shadow-black/40" : "hidden"
           }`}
         >
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {/* =========================
-                CATEGORY DROPDOWN
-            ========================= */}
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            
+            {/* CATEGORY DROPDOWN */}
             <div className="relative">
-              <label className="mb-1.5 block text-[10px] font-medium uppercase tracking-wider text-gray-500">
+              <label className="mb-2 block text-[11px] font-semibold uppercase tracking-wider text-gray-400">
                 Category
               </label>
 
@@ -300,7 +298,7 @@ const Products = () => {
                     openDropdown === "category" ? null : "category",
                   )
                 }
-                className="flex h-9 w-full items-center justify-between rounded-lg border border-gray-800 bg-gray-950 px-3 text-xs text-white transition-all duration-200 hover:border-gray-700"
+                className="flex h-10 w-full items-center justify-between rounded-xl border border-gray-800 bg-gray-950 px-3.5 text-xs font-medium text-white transition-all duration-200 hover:border-gray-700 hover:bg-gray-900"
               >
                 <span className="truncate">
                   {category === "All" ? "All Categories" : category}
@@ -308,21 +306,20 @@ const Products = () => {
 
                 <ChevronDown
                   size={14}
-                  className={`shrink-0 text-gray-500 transition-transform duration-200 ${
-                    openDropdown === "category" ? "rotate-180" : ""
+                  className={`shrink-0 text-gray-400 transition-transform duration-200 ${
+                    openDropdown === "category" ? "rotate-180 text-blue-400" : ""
                   }`}
                 />
               </button>
 
-              {/* CATEGORY MENU */}
               <div
-                className={`absolute left-0 right-0 top-full z-50 mt-1 origin-top rounded-lg border border-gray-800 bg-gray-900 p-1 shadow-2xl shadow-black/40 transition-all duration-200 ${
+                className={`absolute left-0 right-0 top-full z-50 mt-1.5 origin-top rounded-xl border border-gray-800 bg-gray-900/95 p-1.5 shadow-2xl shadow-black/60 backdrop-blur-md transition-all duration-200 ${
                   openDropdown === "category"
                     ? "visible translate-y-0 scale-100 opacity-100"
                     : "invisible -translate-y-2 scale-95 opacity-0"
                 }`}
               >
-                <div className="max-h-56 overflow-y-auto">
+                <div className="max-h-56 overflow-y-auto space-y-0.5">
                   {UniqueCategory.map((item) => (
                     <button
                       key={item}
@@ -331,28 +328,23 @@ const Products = () => {
                         setCategory(item);
                         setOpenDropdown(null);
                       }}
-                      className={`flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-xs transition-all duration-150 ${
+                      className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-xs font-medium transition-all duration-150 ${
                         category === item
-                          ? "bg-blue-500/10 text-blue-400"
-                          : "text-gray-300 hover:bg-gray-800 hover:text-white"
+                          ? "bg-blue-500/15 text-blue-400 shadow-sm"
+                          : "text-gray-300 hover:bg-gray-800/80 hover:text-white"
                       }`}
                     >
                       <span>{item === "All" ? "All Categories" : item}</span>
-
-                      {category === item && (
-                        <Check size={13} className="text-blue-400" />
-                      )}
+                      {category === item && <Check size={13} className="text-blue-400" />}
                     </button>
                   ))}
                 </div>
               </div>
             </div>
 
-            {/* =========================
-                BRAND DROPDOWN
-            ========================= */}
+            {/* BRAND DROPDOWN */}
             <div className="relative">
-              <label className="mb-1.5 block text-[10px] font-medium uppercase tracking-wider text-gray-500">
+              <label className="mb-2 block text-[11px] font-semibold uppercase tracking-wider text-gray-400">
                 Brand
               </label>
 
@@ -361,7 +353,7 @@ const Products = () => {
                 onClick={() =>
                   setOpenDropdown(openDropdown === "brand" ? null : "brand")
                 }
-                className="flex h-9 w-full items-center justify-between rounded-lg border border-gray-800 bg-gray-950 px-3 text-xs text-white transition-all duration-200 hover:border-gray-700"
+                className="flex h-10 w-full items-center justify-between rounded-xl border border-gray-800 bg-gray-950 px-3.5 text-xs font-medium text-white transition-all duration-200 hover:border-gray-700 hover:bg-gray-900"
               >
                 <span className="truncate">
                   {brand === "All" ? "All Brands" : brand}
@@ -369,21 +361,20 @@ const Products = () => {
 
                 <ChevronDown
                   size={14}
-                  className={`shrink-0 text-gray-500 transition-transform duration-200 ${
-                    openDropdown === "brand" ? "rotate-180" : ""
+                  className={`shrink-0 text-gray-400 transition-transform duration-200 ${
+                    openDropdown === "brand" ? "rotate-180 text-blue-400" : ""
                   }`}
                 />
               </button>
 
-              {/* BRAND MENU */}
               <div
-                className={`absolute left-0 right-0 top-full z-50 mt-1 origin-top rounded-lg border border-gray-800 bg-gray-900 p-1 shadow-2xl shadow-black/40 transition-all duration-200 ${
+                className={`absolute left-0 right-0 top-full z-50 mt-1.5 origin-top rounded-xl border border-gray-800 bg-gray-900/95 p-1.5 shadow-2xl shadow-black/60 backdrop-blur-md transition-all duration-200 ${
                   openDropdown === "brand"
                     ? "visible translate-y-0 scale-100 opacity-100"
                     : "invisible -translate-y-2 scale-95 opacity-0"
                 }`}
               >
-                <div className="max-h-56 overflow-y-auto">
+                <div className="max-h-56 overflow-y-auto space-y-0.5">
                   {UniqueBrand.map((item) => (
                     <button
                       key={item}
@@ -392,29 +383,24 @@ const Products = () => {
                         setBrand(item);
                         setOpenDropdown(null);
                       }}
-                      className={`flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-xs transition-all duration-150 ${
+                      className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-xs font-medium transition-all duration-150 ${
                         brand === item
-                          ? "bg-blue-500/10 text-blue-400"
-                          : "text-gray-300 hover:bg-gray-800 hover:text-white"
+                          ? "bg-blue-500/15 text-blue-400 shadow-sm"
+                          : "text-gray-300 hover:bg-gray-800/80 hover:text-white"
                       }`}
                     >
                       <span>{item === "All" ? "All Brands" : item}</span>
-
-                      {brand === item && (
-                        <Check size={13} className="text-blue-400" />
-                      )}
+                      {brand === item && <Check size={13} className="text-blue-400" />}
                     </button>
                   ))}
                 </div>
               </div>
             </div>
 
-            {/* =========================
-                PRICE DROPDOWN
-            ========================= */}
+            {/* PRICE DROPDOWN */}
             <div className="relative">
-              <label className="mb-1.5 block text-[10px] font-medium uppercase tracking-wider text-gray-500">
-                Price
+              <label className="mb-2 block text-[11px] font-semibold uppercase tracking-wider text-gray-400">
+                Price Range
               </label>
 
               <button
@@ -422,74 +408,71 @@ const Products = () => {
                 onClick={() =>
                   setOpenDropdown(openDropdown === "price" ? null : "price")
                 }
-                className="flex h-9 w-full items-center justify-between rounded-lg border border-gray-800 bg-gray-950 px-3 text-xs text-white transition-all duration-200 hover:border-gray-700"
+                className="flex h-10 w-full items-center justify-between rounded-xl border border-gray-800 bg-gray-950 px-3.5 text-xs font-medium text-white transition-all duration-200 hover:border-gray-700 hover:bg-gray-900"
               >
                 <span className="truncate">{getPriceLabel()}</span>
 
                 <ChevronDown
                   size={14}
-                  className={`shrink-0 text-gray-500 transition-transform duration-200 ${
-                    openDropdown === "price" ? "rotate-180" : ""
+                  className={`shrink-0 text-gray-400 transition-transform duration-200 ${
+                    openDropdown === "price" ? "rotate-180 text-blue-400" : ""
                   }`}
                 />
               </button>
 
-              {/* PRICE MENU */}
               <div
-                className={`absolute left-0 right-0 top-full z-50 mt-1 origin-top rounded-lg border border-gray-800 bg-gray-900 p-1 shadow-2xl shadow-black/40 transition-all duration-200 ${
+                className={`absolute left-0 right-0 top-full z-50 mt-1.5 origin-top rounded-xl border border-gray-800 bg-gray-900/95 p-1.5 shadow-2xl shadow-black/60 backdrop-blur-md transition-all duration-200 ${
                   openDropdown === "price"
                     ? "visible translate-y-0 scale-100 opacity-100"
                     : "invisible -translate-y-2 scale-95 opacity-0"
                 }`}
               >
-                {priceOptions.map((item) => {
-                  const selected = getPriceLabel() === item.label;
+                <div className="space-y-0.5">
+                  {priceOptions.map((item) => {
+                    const selected = getPriceLabel() === item.label;
 
-                  return (
-                    <button
-                      key={item.value}
-                      type="button"
-                      onClick={() => handlePriceChange(item.value)}
-                      className={`flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-xs transition-all duration-150 ${
-                        selected
-                          ? "bg-blue-500/10 text-blue-400"
-                          : "text-gray-300 hover:bg-gray-800 hover:text-white"
-                      }`}
-                    >
-                      <span>{item.label}</span>
-
-                      {selected && (
-                        <Check size={13} className="text-blue-400" />
-                      )}
-                    </button>
-                  );
-                })}
+                    return (
+                      <button
+                        key={item.value}
+                        type="button"
+                        onClick={() => handlePriceChange(item.value)}
+                        className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-xs font-medium transition-all duration-150 ${
+                          selected
+                            ? "bg-blue-500/15 text-blue-400 shadow-sm"
+                            : "text-gray-300 hover:bg-gray-800/80 hover:text-white"
+                        }`}
+                      >
+                        <span>{item.label}</span>
+                        {selected && <Check size={13} className="text-blue-400" />}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
             </div>
 
-            {/* =========================
-                CLEAR BUTTON
-            ========================= */}
+            {/* CLEAR BUTTON */}
             <div className="flex items-end">
               <button
                 type="button"
                 onClick={clearFilters}
-                className="flex h-9 w-full items-center justify-center gap-1.5 rounded-lg border border-gray-800 bg-gray-950 px-3 text-xs text-gray-400 transition-all duration-200 hover:border-red-500/30 hover:bg-red-500/5 hover:text-red-400"
+                className="flex h-10 w-full items-center justify-center gap-2 rounded-xl border border-gray-800 bg-gray-950 px-4 text-xs font-medium text-gray-300 transition-all duration-200 hover:border-red-500/30 hover:bg-red-500/10 hover:text-red-400 active:scale-95"
               >
-                <X size={13} />
-                Clear Filters
+                <X size={14} />
+                <span>Clear Filters</span>
               </button>
             </div>
+
           </div>
         </div>
 
         {/* =========================
-            RESULT INFO
+            RESULT INFO BAR
         ========================= */}
-        <div className="mb-3 flex items-center justify-between">
-          <p className="text-[11px] text-gray-500">
+        <div className="mb-4 flex items-center justify-between px-1">
+          <p className="text-xs font-medium text-gray-400">
             Showing{" "}
-            <span className="font-medium text-gray-300">{products.length}</span>{" "}
+            <span className="font-semibold text-white">{products.length}</span>{" "}
             products
           </p>
 
@@ -502,9 +485,9 @@ const Products = () => {
             <button
               type="button"
               onClick={clearFilters}
-              className="text-[11px] text-blue-400 transition hover:text-blue-300"
+              className="text-xs font-medium text-blue-400 transition hover:text-blue-300 hover:underline"
             >
-              Reset
+              Reset filters
             </button>
           )}
         </div>
@@ -513,7 +496,7 @@ const Products = () => {
             PRODUCTS GRID
         ========================= */}
         {products.length > 0 ? (
-          <div className="grid grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
             {products.map((product) => (
               <ProductCard key={product._id} product={product} />
             ))}
@@ -522,28 +505,29 @@ const Products = () => {
           /* =========================
               EMPTY STATE
           ========================= */
-          <div className="flex min-h-[300px] flex-col items-center justify-center rounded-xl border border-dashed border-gray-800 bg-gray-900/40 px-5 text-center">
-            <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-gray-900">
-              <Search size={20} className="text-gray-600" />
+          <div className="flex min-h-[360px] flex-col items-center justify-center rounded-2xl border border-dashed border-gray-800 bg-gray-900/20 px-5 text-center">
+            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gray-900 border border-gray-800 shadow-inner">
+              <Search size={22} className="text-gray-500" />
             </div>
 
-            <h2 className="text-sm font-semibold text-gray-300">
+            <h2 className="text-base font-semibold text-gray-200">
               No products found
             </h2>
 
-            <p className="mt-1 max-w-sm text-xs text-gray-600">
-              Try changing your search or filters to find something else.
+            <p className="mt-1 max-w-sm text-xs text-gray-400 leading-relaxed">
+              We couldn't find anything matching your criteria. Try loosening up your filters or search keywords.
             </p>
 
             <button
               type="button"
               onClick={clearFilters}
-              className="mt-4 rounded-lg bg-blue-600 px-4 py-2 text-xs font-medium text-white transition hover:bg-blue-500"
+              className="mt-5 rounded-xl bg-blue-600 px-5 py-2.5 text-xs font-semibold text-white shadow-lg shadow-blue-600/20 transition-all duration-200 hover:bg-blue-500 active:scale-95"
             >
-              Clear Filters
+              Clear All Filters
             </button>
           </div>
         )}
+
       </div>
     </div>
   );

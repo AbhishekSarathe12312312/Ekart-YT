@@ -25,10 +25,13 @@ import OrderSuccess from "./pages/OrderSuccess";
 import MyOrder from "./pages/MyOrder";
 import Features from "./components/Features";
 import ForgotPassword from "./pages/ForgotPassword";
+import CursorFollower from "./components/CursorFollower";
 
 const App = () => {
   return (
     <div className="bg-gray-800">
+      <CursorFollower />
+
       <Routes>
         <Route
           path="/"

@@ -45,9 +45,6 @@ export const verifyEmail = async (token, email) => {
       throw new Error(error.message);
     }
 
-    console.log("✅ Verification Email Sent Successfully");
-    console.log("Message ID:", data.id);
-
     return data;
   } catch (error) {
     console.error("❌ VERIFICATION MAIL ERROR:", error);
